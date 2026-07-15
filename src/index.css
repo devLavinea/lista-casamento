@@ -1,0 +1,171 @@
+@import 'tailwindcss';
+
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+
+}
+
+.convite {
+   width: 100%;
+  max-width: 430px;
+  aspect-ratio: 9 / 16;
+  position: relative;
+
+  background-image: url("./assets/convite.png");
+  background-size: cover;
+  background-position: center;
+}
+.h1{
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+.h2{
+  font-family: "Roboto Serif", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+.shadow-button {
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.40);
+}
+
+.nome-convidados {
+  font-family: "Birthstone", cursive;
+}
+
+.shadow {
+    box-shadow: 10px 0 10px rgba(0, 0, 0, 0.20);
+}
+.shadow-all{
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+@keyframes arrancarLacre {
+  0% {
+    transform: scale(1);
+  }
+
+  20% {
+    transform: scale(1.2);
+  }
+
+  45% {
+    transform: rotate(-8deg) scale(1.15);
+  }
+
+  70% {
+    transform: translateX(-80px) rotate(15deg) scale(1);
+  }
+
+  100% {
+    transform: translateX(-280px) rotate(25deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.arrancar {
+  animation: arrancarLacre 0.4s ease forwards;
+}
+@keyframes cairFaixa {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  30% {
+    transform: translateY(20px) rotate(3deg);
+  }
+
+  60% {
+    transform: translateY(120px) rotate(10deg);
+  }
+
+  100% {
+    transform: translateY(500px) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+.cair-faixa {
+  transform-origin: top center;
+  animation: cairFaixa 0.5s ease-in forwards;
+}
+
+.perspective{
+    perspective: 2200px;
+    overflow: hidden;
+}
+
+@keyframes abrirEsquerda {
+
+    from{
+        transform: rotateY(0deg);
+    }
+
+    to{
+        transform: rotateY(-105deg);
+    }
+
+}
+
+.abrir-esquerda{
+    transform-origin: left center;
+    animation: abrirEsquerda 1.4s ease forwards;
+    backface-visibility: hidden;
+}
+
+@keyframes abrirDireita {
+
+    from{
+        transform: rotateY(0deg);
+    }
+
+    to{
+        transform: rotateY(105deg);
+    }
+
+}
+
+.abrir-direita{
+    transform-origin: right center;
+    animation: abrirDireita 1.4s ease forwards;
+    backface-visibility: hidden;
+}
+
+.texto-curvo {
+  position: absolute;
+  top: 70px; /* ajusta abaixo do lacre */
+  left: 50%;
+  transform: translateX(-50%) rotate(-6deg);
+  font-size: 14px;
+  color: #6b6375;
+  letter-spacing: 1px;
+}
