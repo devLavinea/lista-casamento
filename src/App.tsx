@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import fundoEsquerdo from "./assets/fundo_esquerdo.png";
 import fundoDireito from "./assets/fundo_direito.png";
@@ -34,6 +35,7 @@ function App() {
   </svg>
   Local do evento
 </button>
+<Link to="/lista">
    <button className="shadow-button fixed bottom-27 w-43 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-2">
   <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path
@@ -43,12 +45,13 @@ function App() {
     />
   </svg>
   Lista de presentes
-</button>  
+</button> 
+</Link> 
         </div>
 
 
 
- <section id="capa-convite" className=" hidden flex justify-center w-screen h-screen perspective">
+ <section id="capa-convite" className="  flex justify-center w-screen h-screen perspective">
       {/* Página esquerda */}
       <div
         className={`relative w-1/2 h-screen shadow z-10 ${
