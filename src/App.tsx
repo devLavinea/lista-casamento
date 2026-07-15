@@ -51,7 +51,7 @@ function App() {
 
 
 
- <section id="capa-convite" className="  flex justify-center w-screen h-screen perspective">
+ <section id="capa-convite" className=" absolute z-10 flex justify-center w-screen h-screen perspective">
       {/* Página esquerda */}
       <div
         className={`relative w-1/2 h-screen shadow z-10 ${
