@@ -22,20 +22,20 @@ function App() {
 
      
       <div className=" overflow-y-scroll  convite h-screen  w-full justify-center items-center flex flex-col relative">
-      <span className="h1 text-[#4a5c36] text-[17px] absolute bottom-48 "> 02 de agosto de 2026</span>
+      <span className="h1 text-[#4a5c36] text-[17px] absolute bottom-55 "> 02 de agosto de 2026</span>
     <button  onClick={() =>
     window.open(
       "https://maps.google.com/?q=-9.389083,-40.503096",
       "_blank"
     )
-  } className="shadow-button absolute bottom-31 w-43 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-4">
+  } className="shadow-button absolute bottom-39 w-43 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-4">
   <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
   </svg>
   Local do evento
 </button>
-<Link className="absolute bottom-18" to="/lista">
+<Link className="absolute bottom-26" to="/lista">
    <button className="shadow-button  w-43 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-2">
   <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path
