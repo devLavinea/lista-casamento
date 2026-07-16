@@ -26,7 +26,7 @@ function App() {
     <section id='convite' className=' w-screen h-screen bg-[#f5f5f5] flex justify-center overflow-hidden'>
 
      
-      <div className=" relative pt-15  convite h-screen  w-full justify-center text-center items-center flex flex-col gap-0.5 ">
+      <div className=" relative pt-15  convite h-screen  w-full justify-center text-center items-center flex flex-col gap-1 ">
     
     <p className="text-[17px]  leading-[1.2] text-[#4a5c36]">
       Cada família tem uma hitória.<br></br> Bem-vindo(a) ao começo da nossa.
@@ -62,7 +62,7 @@ function App() {
   Lista de presentes
 </button> 
 </Link> 
-<img src={ornamento1} className=" h-8 mt-3"></img>
+<img src={ornamento1} className=" h-8 mt-5"></img>
 <p className=" text-[#4a5c36] leading-tight text-[14px]">Com carinho,<br></br> esperamos você!</p>
         </div>
 
