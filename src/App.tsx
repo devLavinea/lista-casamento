@@ -1,13 +1,13 @@
 import "./App.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import noivos from "./assets/noivos.png";
-import fundoEsquerdo from "./assets/fundo_esquerdo.png";
-import fundoDireito from "./assets/fundo_direito.png";
-import lacre from "./assets/lacre.png";
-import ornamento2 from "./assets/ornamento2.png";
-import ornamento3 from "./assets/ornamento3.png";
-import ornamento1 from "./assets/ornamento1.png";
+import noivos from "./noivos.png";
+import fundoEsquerdo from "./fundo_esquerdo.png";
+import fundoDireito from "./fundo_direito.png";
+import lacre from "./lacre.png";
+import ornamento2 from "./ornamento2.png";
+import ornamento3 from "./ornamento3.png";
+import ornamento1 from "./ornamento1.png";
 
 
 
