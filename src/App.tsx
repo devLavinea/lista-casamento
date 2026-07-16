@@ -1,13 +1,13 @@
 import "./App.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import noivos from "./noivos.png";
-import fundoEsquerdo from "./fundo_esquerdo.png";
-import fundoDireito from "./fundo_direito.png";
-import lacre from "./lacre.png";
-import ornamento2 from "./ornamento2.png";
-import ornamento3 from "./ornamento3.png";
-import ornamento1 from "./ornamento1.png";
+import noivos from "/noivos.png";
+import fundoEsquerdo from "/fundo_esquerdo.png";
+import fundoDireito from "/fundo_direito.png";
+import lacre from "/lacre.png";
+import ornamento2 from "/ornamento2.png";
+import ornamento3 from "/ornamento3.png";
+import ornamento1 from "/ornamento1.png";
 
 
 
@@ -68,7 +68,7 @@ function App() {
 
 
 
- <section id="capa-convite" className="hidden absolute z-10 flex justify-center w-screen h-screen perspective">
+ <section id="capa-convite" className=" absolute z-10 justify-center w-screen h-screen perspective">
       {/* Página esquerda */}
       <div
         className={`relative w-1/2 h-screen shadow z-10 ${
@@ -101,7 +101,7 @@ function App() {
           src={lacre}
           alt=""
           onClick={abrirConvite}
-          className={`absolute z-10 w-[115px] h-[115px] cursor-pointer ${
+          className={`absolute z-10 w-115px h-115px cursor-pointer ${
             abrindo
               ? "arrancar"
               : "hover:scale-105 transition-transform duration-300"
@@ -109,7 +109,7 @@ function App() {
         />
 
         <div
-          className={`w-35 bg-white p-1 pl-[60px] left-1/2 absolute z-8 text-center text-[25px] shadow-all leading-[0.9] nome-convidados text-[#2f4728] ${
+          className={`w-35 bg-white p-1 pl-60px left-1/2 absolute z-8 text-center text-[25px] shadow-all leading-[0.9] nome-convidados text-[#2f4728] ${
             abrindo ? "cair-faixa" : ""
           }`}
         >
