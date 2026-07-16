@@ -36,7 +36,7 @@ function App() {
          <img src={ornamento2} className=" h-5.5"></img>
 
       <span className=" text-[#4a5c36] text-[17px] "> 02 de agosto de 2026</span>
-        <img src={ornamento3} className=" h-6"></img>
+        <img src={ornamento3} className=" h-6 mb-2"></img>
 
     <button  onClick={() =>
     window.open(
