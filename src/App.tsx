@@ -20,16 +20,23 @@ function App() {
   const [mostrarConvite, setMostrarConvite] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const abrirConvite = () => {
     setAbrindo(true);
 
    // Começa a música ao clicar no lacre
-  // if (audioRef.current) {
-  //   audioRef.current.play().catch((erro) => {
-  //     console.log("Não foi possível iniciar a música:", erro);
-  //   });
-  // }
+    if (audioRef.current) {
+    audioRef.current.play().catch((erro) => {
+      console.log("Não foi possível iniciar a música:", erro);
+    });
+   }
+
+   if (videoRef.current) {
+    videoRef.current.play().catch((erro) => {
+      console.log("Erro ao iniciar o vídeo:", erro);
+    });
+  }
 
 };
 
@@ -46,7 +53,7 @@ function App() {
     <section id='convite' className='  w-screen h-screen'>
      <video
   src={video}
-  autoPlay
+   ref={videoRef}
   playsInline
   onEnded={() => setMostrarConvite(true)}
    className={`video-convite  absolute w-full h-full ${
@@ -76,7 +83,7 @@ function App() {
       "https://maps.google.com/?q=-9.389083,-40.503096",
       "_blank"
     )
-  } className="shadow-button mt-2   w-43 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-4">
+  } className="shadow-button mt-2   w-45 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-4">
   <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
@@ -84,7 +91,7 @@ function App() {
   Local do evento
 </button>
 <Link className=" " to="/lista">
-   <button className="shadow-button mt-2  w-43 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-2">
+   <button className="shadow-button mt-2  w-45 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-2">
   <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path
       strokeLinecap="round"
