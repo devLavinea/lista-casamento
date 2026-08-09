@@ -1,38 +1,71 @@
 import "./App.css";
-import { useState } from "react";
+import { useState , useRef } from "react";
 import { Link } from "react-router-dom";
 import noivos from "/noivos.png";
 import fundoEsquerdo from "/fundo_esquerdo.png";
 import fundoDireito from "/fundo_direito.png";
+import convite from "/convite.png";
 import lacre from "/lacre.png";
 import ornamento2 from "/ornamento2.png";
 import ornamento3 from "/ornamento3.png";
 import ornamento1 from "/ornamento1.png";
+import audio from "/audio.mp3";
+import video from "/video.mp4";
 
 
 
 function App() {
+ 
   const [abrindo, setAbrindo] = useState(false);
+  const [mostrarConvite, setMostrarConvite] = useState(false);
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const abrirConvite = () => {
     setAbrindo(true);
 
-    setTimeout(() => {
-      console.log("Abrir convite");
-    }, 900);
-  };
+   // Começa a música ao clicar no lacre
+  // if (audioRef.current) {
+  //   audioRef.current.play().catch((erro) => {
+  //     console.log("Não foi possível iniciar a música:", erro);
+  //   });
+  // }
+
+};
 
   return (
-    <section id='convite' className=' w-screen h-screen bg-[#f5f5f5] flex justify-center overflow-hidden'>
+    <>
+     <audio
+      ref={audioRef}
+      src={audio}
+      loop
+    />
 
-     
-      <div className=" relative pt-15  convite h-screen  w-full justify-center text-center items-center flex flex-col gap-1 ">
     
-    <p className="text-[17px]  leading-[1.2] text-[#4a5c36]">
-      Cada família tem uma hitória.<br></br> Bem-vindo(a) ao começo da nossa.
-    </p>
-    <img src={ornamento2} className="h-5.5 "></img>
-    <img src={noivos} className="w-60  "></img>
+    
+    <section id='convite' className='  w-screen h-screen'>
+     <video
+  src={video}
+  autoPlay
+  playsInline
+  onEnded={() => setMostrarConvite(true)}
+   className={`video-convite  absolute w-full h-full ${
+    mostrarConvite ? "hidden" : ""
+  }`}
+  />
+     
+<div id="convite-content"
+  className={`${
+    !mostrarConvite ? "hidden" : ""
+  } fade-in  justify-center overflow-hidden  pt-15 convite h-screen w-full  text-center items-center flex flex-col gap-1`}
+   style={{
+    backgroundImage: `url(${convite})`,
+  }}
+
+> 
+   
+  
+    <img src={noivos} className="w-70  "></img>
          <img src={ornamento2} className=" h-5.5"></img>
 
       <span className=" text-[#4a5c36] text-[17px] "> 02 de agosto de 2026</span>
@@ -68,10 +101,10 @@ function App() {
 
 
 
- <section id="capa-convite" className=" absolute z-10 justify-center w-screen h-screen perspective">
+ <section id="capa-convite" className="  absolute z-10 justify-center w-screen h-screen perspective">
       {/* Página esquerda */}
       <div
-        className={`relative w-1/2 h-screen shadow z-10 ${
+        className={`absolute w-1/2 h-screen shadow z-11 ${
           abrindo ? "abrir-esquerda" : ""
         }`}
       >
@@ -84,24 +117,24 @@ function App() {
 
       {/* Página direita */}
       <div
-        className={`relative w-1/2 h-screen ${
+        className={`absolute w-1/2 h-screen left-[50%] z-10 ${
           abrindo ? "abrir-direita" : ""
         }`}
       >
         <img
           src={fundoDireito}
           alt=""
-          className="h-full w-full"
+          className="h-full w-full "
         />
       </div>
 
       {/* Lacre + faixa */}
-      <div className="absolute p-4 w-full h-full flex justify-center items-center z-10">
+      <div className="absolute p-4 w-full h-full flex justify-center items-center z-12">
         <img
           src={lacre}
           alt=""
           onClick={abrirConvite}
-          className={`absolute z-10 w-115px h-115px cursor-pointer ${
+          className={`absolute z-10 w-28.75 h-28.75  cursor-pointer ${
             abrindo
               ? "arrancar"
               : "hover:scale-105 transition-transform duration-300"
@@ -109,7 +142,7 @@ function App() {
         />
 
         <div
-          className={`w-35 bg-white p-1 pl-60px left-1/2 absolute z-8 text-center text-[25px] shadow-all leading-[0.9] nome-convidados text-[#2f4728] ${
+          className={`w-35 bg-white p-1 pl-12 left-1/2 absolute z-8 text-center text-[25px] shadow-all leading-[0.9] nome-convidados text-[#2f4728] ${
             abrindo ? "cair-faixa" : ""
           }`}
         >
@@ -122,7 +155,7 @@ function App() {
     
     </section>
   
-    
+    </>
   );
 }
 
