@@ -8,7 +8,6 @@ import convite from "/convite.png";
 import lacre from "/lacre.png";
 import ornamento2 from "/ornamento2.png";
 import ornamento3 from "/ornamento3.png";
-import ornamento1 from "/ornamento1.png";
 import audio from "/audio.mp3";
 import video from "/video.mp4";
 
@@ -50,7 +49,7 @@ function App() {
 
     
     
-    <section id='convite' className='  w-screen h-screen'>
+    <section id='convite' className=' relative overflow-hidden  w-screen h-screen'>
      <video
   src={video}
    ref={videoRef}
@@ -64,18 +63,20 @@ function App() {
 <div id="convite-content"
   className={`${
     !mostrarConvite ? "hidden" : ""
-  } fade-in  justify-center overflow-hidden  pt-15 convite h-screen w-full  text-center items-center flex flex-col gap-1`}
+  } fade-in  justify-center overflow-hidden  pt-5 convite h-screen w-full  text-center items-center flex flex-col gap-1`}
    style={{
     backgroundImage: `url(${convite})`,
   }}
 
 > 
-   
-  
+   <p className=" text-[#4a5c36] leading-tight text-[18px]">Venha comemorar conosco,<br></br> a nossa festa de casamento!</p>
+    <img src={ornamento2} className=" h-5.5"></img>
+
+
     <img src={noivos} className="w-70  "></img>
          <img src={ornamento2} className=" h-5.5"></img>
 
-      <span className=" text-[#4a5c36] text-[17px] "> 02 de agosto de 2026</span>
+      <span className=" text-[#4a5c36] text-[18px] "> 24 de outubro de 2026</span>
         <img src={ornamento3} className=" h-6 mb-2"></img>
 
     <button  onClick={() =>
@@ -83,7 +84,7 @@ function App() {
       "https://maps.google.com/?q=-9.389083,-40.503096",
       "_blank"
     )
-  } className="shadow-button mt-2   w-45 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-4">
+  } className="shadow-button mt-2 text-[18px]  w-50 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-4">
   <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
@@ -91,7 +92,7 @@ function App() {
   Local do evento
 </button>
 <Link className=" " to="/lista">
-   <button className="shadow-button mt-2  w-45 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-2">
+   <button className="shadow-button mt-2 text-[18px] w-50 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-2">
   <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path
       strokeLinecap="round"
@@ -102,8 +103,7 @@ function App() {
   Lista de presentes
 </button> 
 </Link> 
-<img src={ornamento1} className=" h-8 mt-5"></img>
-<p className=" text-[#4a5c36] leading-tight text-[14px]">Com carinho,<br></br> esperamos você!</p>
+
         </div>
 
 
