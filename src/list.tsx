@@ -207,7 +207,7 @@ function List() {
       </div>
 
       {/* OUTRAS FORMAS DE PRESENTEAR */}
-      <div className="w-full flex flex-col justify-center items-center py-6">
+      <div className="w-fulFl flex flex-col justify-center items-center py-6">
 
         <h1 className=" text-[22px] font-bold text-[#4F6B4A] text-center">
           OUTRAS FORMAS DE PRESENTEAR
