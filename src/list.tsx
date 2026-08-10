@@ -1,121 +1,269 @@
 import { useEffect, useState } from "react";
 import Item from "./components/item";
+import ItemContribuinte from "./components/item-contribuinte";
 import { supabase } from "./services/supabase";
+import "./index.css";
 
 interface Presente {
   id: number;
   nome: string;
+  descricao: string;
   imagem: string;
+  preco: string;
+  valorArrecadado: number;
+  tipo: string;
   reservado: boolean;
-  reservado_por: string | null;
 }
 
 function List() {
-
   const [presentes, setPresentes] = useState<Presente[]>([]);
 
   async function buscarPresentes() {
-
     const { data, error } = await supabase
       .from("presentes")
       .select("*")
       .order("id");
 
-    if(error){
+    if (error) {
       console.log(error);
       return;
     }
 
-    setPresentes(data);
-
+    setPresentes(data || []);
   }
 
-  async function reservarPresente(id:number, nome:string){
-
-    if(!nome.trim()){
+  // RESERVAR PRESENTE NORMAL
+  async function reservarPresente(id: number, nome: string) {
+    if (!nome.trim()) {
       alert("Digite seu nome");
       return;
     }
 
-    localStorage.setItem(
-      `reserva_${id}`,
-      nome
-    );
+    localStorage.setItem(`reserva_${id}`, nome);
 
     const { error } = await supabase
       .from("presentes")
       .update({
-        reservado:true,
-        reservado_por:nome
+        reservado: true,
+        reservado_por: nome,
       })
       .eq("id", id);
 
-    if(error){
+    if (error) {
       console.log(error);
       return;
     }
 
     buscarPresentes();
-
   }
 
-  async function cancelarReserva(id:number){
+  // CANCELAR RESERVA DE PRESENTE NORMAL
+  async function cancelarReserva(id: number) {
+    localStorage.removeItem(`reserva_${id}`);
 
-    localStorage.removeItem(
-      `reserva_${id}`
-    );
-
-    const {error} = await supabase
+    const { error } = await supabase
       .from("presentes")
       .update({
-        reservado:false,
-        reservado_por:null
+        reservado: false,
+        reservado_por: null,
       })
-      .eq("id",id);
+      .eq("id", id);
 
-    if(error){
+    if (error) {
       console.log(error);
       return;
     }
 
     buscarPresentes();
-
   }
 
-  useEffect(()=>{
+  // REGISTRAR CONTRIBUIÇÃO
+  async function registrarContribuicao(
+    id: number,
+    nome: string,
+    valor: number
+  ) {
+    if (!nome.trim()) {
+      alert("Digite seu nome");
+      return;
+    }
 
+    if (!valor || valor <= 0) {
+      alert("Digite um valor válido");
+      return;
+    }
+
+    // Busca o valor atual no Supabase
+    const { data, error: erroBusca } = await supabase
+      .from("presentes")
+      .select("valorArrecadado")
+      .eq("id", id)
+      .single();
+
+    if (erroBusca) {
+      console.log(erroBusca);
+      alert("Não foi possível buscar o valor arrecadado.");
+      return;
+    }
+
+    const valorAtual = Number(data?.valorArrecadado) || 0;
+
+    const novoValor = valorAtual + valor;
+
+    // Atualiza somente o valor arrecadado
+    const { error } = await supabase
+      .from("presentes")
+      .update({
+        valorArrecadado: novoValor,
+      })
+      .eq("id", id);
+
+    if (error) {
+      console.log(error);
+      alert("Não foi possível registrar a contribuição.");
+      return;
+    }
+
+    // Guarda localmente quem contribuiu
+    const contribuicoesSalvas =
+      JSON.parse(
+        localStorage.getItem(`contribuicoes_${id}`) || "[]"
+      );
+
+    contribuicoesSalvas.push({
+      nome,
+      valor,
+    });
+
+    localStorage.setItem(
+      `contribuicoes_${id}`,
+      JSON.stringify(contribuicoesSalvas)
+    );
+
+    // Atualiza a lista
     buscarPresentes();
+  }
 
-  },[]);
+  useEffect(() => {
+    buscarPresentes();
+  }, []);
 
   return (
+    <section>
 
-    <section className="w-screen min-h-screen bg-[#f5f5f5]">
+      {/* TÍTULO */}
+            <div className="w-full h-15 bg-[#4F6B4A] flex flex-col items-center justify-center gap-2">
 
+                <h1 className=" text-[25px] font-semibold text-[#ffffff] text-center">
+
+          LISTA DE PRESENTES
+        </h1>
+      </div>
+
+      {/* AVISO SOBRE OS VALORES */}
+      <div className="mx-4 mb-6 mt-2 rounded-xl bg-[#eef4e9] px-3 py-3 flex items-start gap-3">
+
+        <div className="text-[#4F6B4A] text-lg leading-none mt-1">
+          ⓘ
+        </div>
+
+        <p className="text-xs text-center leading-relaxed text-[#4F6B4A]">
+          <strong>
+            Sugestões escolhidas com carinho para o nosso lar.
+            <br />
+            O valor é apenas uma referência.
+          </strong>
+
+          <br />
+
+          Clique em <strong>“Reservar”</strong> para ver
+          sugestões ou comprar.
+        </p>
+
+      </div>
+
+      {/* PRESENTES NORMAIS */}
       <div className="grid grid-cols-1 gap-4 p-4">
 
-        {
-          presentes.map((presente)=>(
-
+        {presentes
+          .filter(
+            (presente) =>
+              presente.tipo === "presente"
+          )
+          .map((presente) => (
             <Item
               key={presente.id}
               id={presente.id}
               nome={presente.nome}
               imagem={presente.imagem}
+              descricao={presente.descricao}
+              preco={presente.preco}
               reservado={presente.reservado}
               onReservar={reservarPresente}
               onCancelar={cancelarReserva}
             />
+          ))}
 
-          ))
-        }
+      </div>
+
+      {/* OUTRAS FORMAS DE PRESENTEAR */}
+      <div className="w-full flex flex-col justify-center items-center py-6">
+
+        <h1 className=" text-[22px] font-bold text-[#4F6B4A] text-center">
+          OUTRAS FORMAS DE PRESENTEAR
+        </h1>
+        
+      </div>
+
+      {/* AVISO SOBRE OS VALORES */}
+      <div className="mx-4 mb-6 mt-2 rounded-xl bg-[#eef4e9] px-3 py-3 flex items-start gap-3">
+
+        <div className="text-[#4F6B4A] text-lg leading-none mt-1">
+          ⓘ
+        </div>
+
+        <p className="text-xs text-center leading-relaxed text-[#4F6B4A]">
+          <strong>
+Caso nenhuma das opções acima seja ideal para você, também é possível contribuir com o valor que desejar para nos ajudar a montar nosso lar.            
+           
+          </strong>
+        </p>
+
+      </div>
+
+      {/* CONTRIBUIÇÕES */}
+      <div className="grid grid-cols-1 gap-4 p-4">
+
+        {presentes
+          .filter(
+            (presente) =>
+              presente.tipo === "contribuicao"
+          )
+          .map((presente) => (
+            <ItemContribuinte
+              key={presente.id}
+              id={presente.id}
+              nome={presente.nome}
+              imagem={presente.imagem}
+              descricao={presente.descricao}
+              preco={presente.preco}
+              valorArrecadado={
+                Number(
+                  presente.valorArrecadado
+                ) || 0
+              }
+              reservado={false}
+              onContribuir={
+                registrarContribuicao
+              }
+              onCancelar={() => {}}
+            />
+          ))}
 
       </div>
 
     </section>
-
   );
-
 }
 
 export default List;
