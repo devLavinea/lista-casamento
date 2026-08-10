@@ -4,7 +4,6 @@ import "../index.css";
 interface ItemProps {
   id: number;
   nome: string;
-  descricao: string;
   imagem: string;
   preco: string;
   valorArrecadado: number;
@@ -20,7 +19,6 @@ interface ItemProps {
 function ItemContribuinte({
   id,
   nome,
-  descricao,
   imagem,
   preco,
   valorArrecadado,
@@ -102,7 +100,7 @@ function ItemContribuinte({
     <div className="flex w-full overflow-hidden rounded-xl shadow-sm">
 
       {/* IMAGEM */}
-      <div className="w-[40%] min-h-[135px] bg-gray-100 flex items-center justify-center">
+      <div className="w-[40%] -min-h-[135px] bg-gray-100 flex items-center justify-center">
 
         <img
           src={imagem}

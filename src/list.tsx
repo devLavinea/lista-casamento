@@ -245,7 +245,6 @@ Caso nenhuma das opções acima seja ideal para você, também é possível cont
               id={presente.id}
               nome={presente.nome}
               imagem={presente.imagem}
-              descricao={presente.descricao}
               preco={presente.preco}
               valorArrecadado={
                 Number(
