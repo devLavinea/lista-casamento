@@ -149,11 +149,11 @@ function App() {
         />
 
         <div
-          className={`w-35 bg-white p-1 pl-12 left-1/2 absolute z-8 text-center text-[25px] shadow-all leading-[0.9] nome-convidados text-[#2f4728] ${
+          className={`w-40 bg-white p-2 pl-14 left-1/2 absolute z-8 text-center text-[13px] shadow-all leading-[0.9]  text-[#2f4728]  ${
             abrindo ? "cair-faixa" : ""
           }`}
         >
-          Gabriele e Rodrigo
+          Clique no lacre para abrir o convite.
         </div>
 
      

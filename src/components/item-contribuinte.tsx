@@ -212,7 +212,7 @@ function ItemContribuinte({
             Faça sua contribuição via Pix
           </h2>
 
-          <p className="text-[10px] text-center text-gray-500">
+          <p className="text-[12px] text-center text-gray-500">
             Valor da contribuição:
           </p>
 
@@ -227,19 +227,19 @@ function ItemContribuinte({
 
           <div className="bg-[#eef4e9] rounded-lg p-2 text-center">
 
-            <p className="text-[10px] text-gray-500">
+            <p className="text-[13px] text-gray-500">
               Chave Pix
             </p>
 
-            <p className="text-[13px] font-semibold text-[#4F6B4A] break-all">
+            <p className="text-[14px] font-semibold text-[#4F6B4A] break-all">
               74988248014
             </p>
 
-            <p className="text-[10px] text-gray-500 mt-1">
+            <p className="text-[13px] text-gray-500 mt-1">
               Lavinea Souza
             </p>
 
-            <p className="text-[10px] text-gray-500">
+            <p className="text-[13px] text-gray-500">
               Mercado Pago
             </p>
 
@@ -274,7 +274,7 @@ function ItemContribuinte({
             Identificar contribuição
           </h2>
 
-          <p className="text-[10px] text-center text-gray-500">
+          <p className="text-[11px] text-center text-gray-500">
             Digite seu nome para registrar sua contribuição.
           </p>
 
