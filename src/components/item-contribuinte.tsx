@@ -156,7 +156,7 @@ function ItemContribuinte({
 
           <button
             onClick={() => setDivAtual(3)}
-            className="bg-[#4F6B4A] text-white rounded-lg text-xs py-1.5"
+            className="bg-[#4F6B4A] text-white rounded-lg text-[13px] py-1.5"
           >
             Contribuir
           </button>
@@ -168,7 +168,7 @@ function ItemContribuinte({
       {divAtual === 3 && (
         <div className="flex-1 bg-white p-3 flex flex-col justify-center gap-2">
 
-          <h2 className="text-sm font-semibold text-[#4F6B4A] text-center">
+          <h2 className="text-[13px] font-semibold text-[#4F6B4A] text-center">
             Quanto você deseja contribuir?
           </h2>
 
@@ -182,21 +182,21 @@ function ItemContribuinte({
                 e.target.value
               )
             }
-            className="w-full text-xs px-2 py-1.5 rounded-lg border border-gray-300 focus:outline-none"
+            className="w-full text-[13px] px-2 py-1.5 rounded-lg border border-gray-300 focus:outline-none"
           />
 
           <button
             onClick={
               continuarContribuicao
             }
-            className="bg-[#4F6B4A] text-white rounded-lg text-xs py-1.5"
+            className="bg-[#4F6B4A] text-white rounded-lg text-[13px] py-1.5"
           >
             Continuar
           </button>
 
           <button
             onClick={() => setDivAtual(2)}
-            className="text-gray-400 text-xs"
+            className="text-gray-400 text-[13px]"
           >
             Voltar
           </button>
@@ -208,7 +208,7 @@ function ItemContribuinte({
       {divAtual === 4 && (
         <div className="flex-1 bg-white p-3 flex flex-col justify-center gap-2">
 
-          <h2 className="text-sm font-semibold text-[#4F6B4A] text-center">
+          <h2 className="text-[13px] font-semibold text-[#4F6B4A] text-center">
             Faça sua contribuição via Pix
           </h2>
 
@@ -231,7 +231,7 @@ function ItemContribuinte({
               Chave Pix
             </p>
 
-            <p className="text-sm font-semibold text-[#4F6B4A] break-all">
+            <p className="text-[13px] font-semibold text-[#4F6B4A] break-all">
               74988248014
             </p>
 
@@ -245,20 +245,20 @@ function ItemContribuinte({
 
           </div>
 
-          <p className="text-[9px] text-center text-gray-400">
+          <p className="text-[11px] text-center text-gray-400">
             Após realizar o Pix, confirme sua contribuição.
           </p>
 
           <button
             onClick={() => setDivAtual(5)}
-            className="bg-[#4F6B4A] text-white rounded-lg text-xs py-1.5"
+            className="bg-[#4F6B4A] text-white rounded-lg text-[13px] py-1.5"
           >
             Já fiz o Pix
           </button>
 
           <button
             onClick={() => setDivAtual(3)}
-            className="text-gray-400 text-xs"
+            className="text-gray-400 text-[13px]"
           >
             Voltar
           </button>
@@ -270,7 +270,7 @@ function ItemContribuinte({
       {divAtual === 5 && (
         <div className="flex-1 bg-white p-3 flex flex-col justify-center gap-2">
 
-          <h2 className="text-sm font-semibold text-[#4F6B4A] text-center">
+          <h2 className="text-[13px] font-semibold text-[#4F6B4A] text-center">
             Identificar contribuição
           </h2>
 
@@ -287,21 +287,21 @@ function ItemContribuinte({
                 e.target.value
               )
             }
-            className="w-full text-xs px-2 py-1.5 rounded-lg border border-gray-300 focus:outline-none"
+            className="w-full text-[13px] px-2 py-1.5 rounded-lg border border-gray-300 focus:outline-none"
           />
 
           <button
             onClick={
               confirmarContribuicao
             }
-            className="bg-[#4F6B4A] text-white rounded-lg text-xs py-1.5"
+            className="bg-[#4F6B4A] text-white rounded-lg text-[13px] py-1.5"
           >
             Confirmar contribuição
           </button>
 
           <button
             onClick={() => setDivAtual(4)}
-            className="text-gray-400 text-xs"
+            className="text-gray-400 text-[13px]"
           >
             Voltar
           </button>

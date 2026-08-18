@@ -7,6 +7,7 @@ interface ItemProps {
   descricao: string;
   imagem: string;
   preco: string;
+  link: string;
   reservado: boolean;
   onReservar: (id: number, nome: string) => void;
   onCancelar: (id: number) => void;
@@ -18,6 +19,7 @@ function Item({
   descricao,
   imagem,
   preco,
+  link,
   reservado,
   onReservar,
   onCancelar,
@@ -59,25 +61,25 @@ function Item({
           <h2 className="text-[17px] font-semibold text-[#4F6B4A] text-center">
             {nome}
           </h2>
-           <p className="text-xs text-center text-gray-500">
+           <p className="text-[13px] text-center text-gray-500">
             {descricao}
           </p>
 
 
           {/* PREÇO */}
           <div className="flex justify-center">
-            <span className="bg-[#eef4e9] text-[#4F6B4A] font-semibold text-sm px-3 py-1 rounded-lg">
+            <span className="bg-[#eef4e9] text-[#4F6B4A] font-semibold text-[13px] px-3 py-1 rounded-lg">
               R$ {preco}
             </span>
           </div>
 
-          <p className="text-xs text-center text-gray-500">
+          <p className="text-[13px] text-center text-gray-500">
             Deseja reservar este presente?
           </p>
 
           <button
             onClick={() => setDivAtual(3)}
-            className="bg-[#4F6B4A] text-white rounded-lg text-xs py-1.5"
+            className="bg-[#4F6B4A] text-white rounded-lg text-[13px] py-1.5"
           >
             Reservar
           </button>
@@ -91,7 +93,7 @@ function Item({
             divAtual === 3 ? "flex" : "hidden"
           } flex-1 bg-white p-3 flex-col justify-center gap-2`}
         >
-          <h2 className="text-sm font-semibold text-[#4F6B4A] text-center">
+          <h2 className="text-[13px] font-semibold text-[#4F6B4A] text-center">
             Reservar presente
           </h2>
 
@@ -100,12 +102,12 @@ function Item({
             placeholder="Digite seu nome"
             value={nomeDigitado}
             onChange={(e) => setNomeDigitado(e.target.value)}
-            className="w-full text-xs px-2 py-1.5 rounded-lg border border-gray-300 focus:outline-none"
+            className="w-full text-[13px] px-2 py-1.5 rounded-lg border border-gray-300 focus:outline-none"
           />
 
           <button
             onClick={confirmarReserva}
-            className="bg-[#4F6B4A] text-white rounded-lg text-xs py-1.5"
+            className="bg-[#4F6B4A] text-white rounded-lg text-[13px] py-1.5"
           >
             Confirmar
           </button>
@@ -120,19 +122,19 @@ function Item({
             {nome}
           </h2>
 
-           <p className="text-[9px] text-center text-gray-400 leading-tight opacity-70">
+           <p className="text-[12px] text-center text-gray-400 leading-tight opacity-70">
                 Você pode comprar este presente onde preferir.
               </p>
 
 
           {/* PREÇO */}
           <div className="flex justify-center">
-            <span className="bg-[#eef4e9] text-[#4F6B4A] font-semibold text-sm px-3 py-1 rounded-lg">
+            <span className="bg-[#eef4e9] text-[#4F6B4A] font-semibold text-[13px] px-3 py-1 rounded-lg">
               R$ {preco}
             </span>
           </div>
 
-          <p className="text-sm text-center text-gray-500">
+          <p className="text-[13px] text-center text-gray-500">
             {minhaReserva
               ? `Reservado por ${minhaReserva}`
               : "Presente reservado 🎁"}
@@ -140,21 +142,24 @@ function Item({
 
           {minhaReserva && (
             <>
-              <p className="text-[9px] text-center text-gray-400 leading-tight opacity-70">
+              <p className="text-[11px] text-center text-gray-400 leading-tight opacity-70">
                 {descricao}
               </p>
 
-              <button className="flex items-center justify-center gap-1 border border-[#4F6B4A] text-[#4F6B4A] text-xs py-1 rounded-lg">
-                🛒 Comprar
-              </button>
+          <button
+  onClick={() => window.open(link, "_blank")}
+  className="flex items-center justify-center gap-1 border border-[#4F6B4A] text-[#4F6B4A] text-[13px] py-1 rounded-lg"
+>
+  🛒 Comprar
+</button>
 
-              <button className="flex items-center justify-center gap-1 border border-[#4F6B4A] text-[#4F6B4A] text-xs py-1 rounded-lg">
+              <button className="flex items-center justify-center gap-1 border border-[#4F6B4A] text-[#4F6B4A] text-[13px] py-1 rounded-lg">
                 💡 Sugestões
               </button>
 
               <button
                 onClick={() => onCancelar(id)}
-                className="text-red-500 text-xs py-1"
+                className="text-red-500 text-[13px] py-1"
               >
                 ✖ Cancelar Reserva
               </button>

@@ -10,6 +10,7 @@ interface Presente {
   descricao: string;
   imagem: string;
   preco: string;
+  link: string;
   valorArrecadado: number;
   tipo: string;
   reservado: boolean;
@@ -167,18 +168,13 @@ function List() {
           ⓘ
         </div>
 
-        <p className="text-xs text-center leading-relaxed text-[#4F6B4A]">
-          <strong>
-            Sugestões escolhidas com carinho para o nosso lar.
-            <br />
-            O valor é apenas uma referência.
-          </strong>
-
-          <br />
-
-          Clique em <strong>“Reservar”</strong> para ver
-          sugestões ou comprar.
-        </p>
+        <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
+  <strong>Sugestões escolhidas com carinho. O valor é apenas uma referência.</strong>
+  <br />
+  Quer presentear junto? 💚<br></br> Você pode se juntar a um amigo ou familiar e dividir o presente.
+  <br />
+  Clique em <strong>“Reservar”</strong> para escolher.
+</p>
 
       </div>
 
@@ -198,6 +194,7 @@ function List() {
               imagem={presente.imagem}
               descricao={presente.descricao}
               preco={presente.preco}
+              link={presente.link}
               reservado={presente.reservado}
               onReservar={reservarPresente}
               onCancelar={cancelarReserva}
@@ -222,7 +219,7 @@ function List() {
           ⓘ
         </div>
 
-        <p className="text-xs text-center leading-relaxed text-[#4F6B4A]">
+        <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
           <strong>
 Caso nenhuma das opções acima seja ideal para você, também é possível contribuir com o valor que desejar para nos ajudar a montar nosso lar.            
            
