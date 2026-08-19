@@ -164,14 +164,14 @@ function List() {
       {/* AVISO SOBRE OS VALORES */}
       <div className="mx-4 mb-6 mt-2 rounded-xl bg-[#eef4e9] px-3 py-3 flex items-start gap-3">
 
-        <div className="text-[#4F6B4A] text-[20px] leading-none mt-1">
+        <div className="text-[#4F6B4A] text-[22px] leading-none mt-1">
           ⓘ
         </div>
 
         <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
- <strong > Sugestões escolhidas com carinho. <br /> O valor é apenas uma referência.</strong>
+  Sugestões escolhidas com carinho. <br /> <strong >O valor é apenas uma referência.</strong>
   <br />
-   Você pode se juntar a um amigo ou familiar e dividir o presente.💚
+   Você pode se juntar a um amigo ou familiar e dividir o presente.
   <br />
   Clique em <strong>“Reservar”</strong> para escolher.
 </p>
