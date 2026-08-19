@@ -155,7 +155,7 @@ function List() {
       {/* TÍTULO */}
             <div className="w-full h-15 bg-[#4F6B4A] flex flex-col items-center justify-center gap-2">
 
-                <h1 className=" text-[30px] nome-convidados font-semibold text-[#ffffff] text-center">
+                <h1 className=" text-[300px] nome-convidados font-semibold text-[#ffffff] text-center">
 
           Lista de Presentes
         </h1>
