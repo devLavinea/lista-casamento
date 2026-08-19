@@ -155,9 +155,9 @@ function List() {
       {/* TÍTULO */}
             <div className="w-full h-15 bg-[#4F6B4A] flex flex-col items-center justify-center gap-2">
 
-                <h1 className=" text-[22px] nome-convidados font-semibold text-[#ffffff] text-center">
+                <h1 className=" text-[24px] nome-convidados font-semibold text-[#ffffff] text-center">
 
-          LISTA DE PRESENTES
+          Lista de Presentes
         </h1>
       </div>
 
@@ -207,7 +207,7 @@ function List() {
       <div className="w-fulFl flex flex-col justify-center items-center py-6">
 
         <h1 className=" text-[22px] font-bold nome-convidados text-[#4F6B4A] text-center">
-          OUTRAS FORMAS DE PRESENTEAR
+          Outras formas de presentear
         </h1>
         
       </div>
