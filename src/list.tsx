@@ -203,6 +203,52 @@ function List() {
           ))}
 
       </div>
+
+      {/* ITENS SEM SUGESTÕES */}
+<div className="w-full flex flex-col justify-center items-center py-6">
+
+  <h1 className="text-[40px] font-bold nome-convidados text-[#4F6B4A] text-center">
+    Itens sem sugestões
+  </h1>
+
+</div>
+
+{/* AVISO */}
+<div className="mx-4 mb-6 mt-2 rounded-xl bg-[#eef4e9] px-3 py-3 flex items-start gap-3">
+
+  <div className="text-[#4F6B4A] text-[22px] leading-none mt-1">
+    ⓘ
+  </div>
+
+  <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
+    Aqui você escolhe o item.
+  </p>
+
+</div>
+
+{/* ITENS LIVRES */}
+<div className="grid grid-cols-1 gap-4 p-4">
+
+  {presentes
+    .filter(
+      (presente) =>
+        presente.tipo === "livre"
+    )
+    .map((presente) => (
+      <ItemLivre
+        key={presente.id}
+        id={presente.id}
+        nome={presente.nome}
+        imagem={presente.imagem}
+        descricao={presente.descricao}
+        reservado={presente.reservado}
+        onReservar={reservarPresente}
+        onCancelar={cancelarReserva}
+      />
+    ))}
+
+</div>
+
       
 
       {/* OUTRAS FORMAS DE PRESENTEAR */}
