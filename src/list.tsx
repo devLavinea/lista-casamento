@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Item from "./components/item";
 import ItemContribuinte from "./components/item-contribuinte";
-import ItemLivre from "./components/item-contribuinte";
+import ItemLivre from "./components/item-livre";
 import { supabase } from "./services/supabase";
 import "./index.css";
 
@@ -258,6 +258,54 @@ Caso nenhuma das opções acima seja ideal para você, também é possível cont
           ))}
 
       </div>
+{/* SEM PREFERÊNCIA */}
+<div className="w-full flex flex-col justify-center items-center py-6">
+
+  <h1 className="text-[40px] font-bold nome-convidados text-[#4F6B4A] text-center">
+    Sem preferência
+  </h1>
+
+</div>
+
+{/* AVISO - SEM PREFERÊNCIA */}
+<div className="mx-4 mb-6 mt-2 rounded-xl bg-[#eef4e9] px-3 py-3 flex items-start gap-3">
+
+  <div className="text-[#4F6B4A] text-lg leading-none mt-1">
+    ⓘ
+  </div>
+
+  <p className="text-[14px] text-center leading-relaxed text-[#4F6B4A]">
+    <strong>
+      Aqui você pode escolher o presente como preferir, sem sugestões.
+    </strong>
+  </p>
+
+</div>
+
+{/* PRESENTES SEM PREFERÊNCIA */}
+<div className="grid grid-cols-1 gap-4 p-4">
+
+  {presentes
+    .filter(
+      (presente) =>
+        presente.tipo === "livre"
+    )
+    .map((presente) => (
+      <ItemLivre
+        key={presente.id}
+        id={presente.id}
+        nome={presente.nome}
+        imagem={presente.imagem}
+        descricao={presente.descricao}
+        preco={presente.preco}
+        link={presente.link}
+        reservado={presente.reservado}
+        onReservar={reservarPresente}
+        onCancelar={cancelarReserva}
+      />
+    ))}
+
+</div>
 
     </section>
   );
