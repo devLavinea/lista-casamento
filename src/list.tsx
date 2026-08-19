@@ -168,8 +168,8 @@ function List() {
           ⓘ
         </div>
 
-        <p className="text-[14px] text-center leading-relaxed text-[#4F6B4A]">
-  Sugestões escolhidas com carinho.<br /> <strong >O valor é apenas uma referência.</strong>
+        <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
+  Sugestões escolhidas com carinho. 💚<br /> <strong >O valor é apenas uma referência.</strong>
   <br />
    Você pode se juntar a um amigo ou familiar e dividir o presente.
   <br />
