@@ -78,6 +78,51 @@ function List() {
     buscarPresentes();
   }
 
+  // RESERVAR PRESENTE LIVRE
+  async function reservarPresente(id: number, nome: string) {
+    if (!nome.trim()) {
+      alert("Digite seu nome");
+      return;
+    }
+
+    localStorage.setItem(`reserva_${id}`, nome);
+
+    const { error } = await supabase
+      .from("presentes")
+      .update({
+        reservado: true,
+        reservado_por: nome,
+      })
+      .eq("id", id);
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    buscarPresentes();
+  }
+
+  // CANCELAR RESERVA DE PRESENTE LIVRE
+  async function cancelarReserva(id: number) {
+    localStorage.removeItem(`reserva_${id}`);
+
+    const { error } = await supabase
+      .from("presentes")
+      .update({
+        reservado: false,
+        reservado_por: null,
+      })
+      .eq("id", id);
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    buscarPresentes();
+  }
+
   // REGISTRAR CONTRIBUIÇÃO
   async function registrarContribuicao(
     id: number,
@@ -202,6 +247,54 @@ function List() {
           ))}
 
       </div>
+
+       {/* TÍTULO */}
+            <div className="w-full h-15  flex flex-col items-center justify-center gap-2">
+
+                <h1 className=" text-[40px] nome-convidados font-semibold text-[#4F6B4A] text-center">
+
+         Aqui, a escolha é sua!
+        </h1>
+      </div>
+
+      {/* AVISO SOBRE OS VALORES */}
+      <div className="mx-4 mb-6 mt-2 rounded-xl bg-[#eef4e9] px-3 py-3 flex items-start gap-3">
+
+        <div className="text-[#4F6B4A] text-[22px] leading-none mt-1">
+          ⓘ
+        </div>
+
+        <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
+ Não temos uma sugestão específica para esses itens. <br /> Fique à vontade para escolher o modelo que mais gostar e presentear nosso novo lar.
+</p>
+
+      </div>
+
+      {/* PRESENTES LIVRES */}
+      <div className="grid grid-cols-1 gap-4 p-4">
+
+        {presentes
+          .filter(
+            (presente) =>
+              presente.tipo === "presente"
+          )
+          .map((presente) => (
+            <ItemLivre
+              key={presente.id}
+              id={presente.id}
+              nome={presente.nome}
+              imagem={presente.imagem}
+              descricao={presente.descricao}
+              preco={presente.preco}
+              link={presente.link}
+              reservado={presente.reservado}
+              onReservar={reservarPresente}
+              onCancelar={cancelarReserva}
+            />
+          ))}
+
+      </div>
+
 
       {/* OUTRAS FORMAS DE PRESENTEAR */}
       <div className="w-fulFl flex flex-col justify-center items-center py-6">
