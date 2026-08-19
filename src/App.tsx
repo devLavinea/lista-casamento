@@ -76,7 +76,7 @@ function App() {
     <img src={noivos} className="w-70  "></img>
          <img src={ornamento2} className=" h-5.5"></img>
 
-      <span className=" text-[#4a5c36] text-[18px] ">24 de outubro de 2026, às 18h </span>
+      <span className=" text-[#4a5c36] text-[18px] "><strong>24 de outubro de 2026, às 18h </strong></span>
         <img src={ornamento3} className=" h-6 mb-2"></img>
 
     <button  onClick={() =>
