@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Item from "./components/item";
 import ItemContribuinte from "./components/item-contribuinte";
+import ItemLivre from "./components/item-livre";
 import { supabase } from "./services/supabase";
 import "./index.css";
 
