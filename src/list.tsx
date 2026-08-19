@@ -155,7 +155,7 @@ function List() {
       {/* TÍTULO */}
             <div className="w-full h-15 bg-[#4F6B4A] flex flex-col items-center justify-center gap-2">
 
-                <h1 className=" text-[25px] font-semibold text-[#ffffff] text-center">
+                <h1 className=" text-[22px] nome-convidados font-semibold text-[#ffffff] text-center">
 
           LISTA DE PRESENTES
         </h1>
@@ -168,10 +168,10 @@ function List() {
           ⓘ
         </div>
 
-        <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
-  <strong>Sugestões escolhidas com carinho. O valor é apenas uma referência.</strong>
+        <p className="text-[14px] text-center leading-relaxed text-[#4F6B4A]">
+  Sugestões escolhidas com carinho. <strong >O valor é apenas uma referência.</strong>
   <br />
-  Quer presentear junto? 💚<br></br> Você pode se juntar a um amigo ou familiar e dividir o presente.
+   Você pode se juntar a um amigo ou familiar e dividir o presente.
   <br />
   Clique em <strong>“Reservar”</strong> para escolher.
 </p>
@@ -206,7 +206,7 @@ function List() {
       {/* OUTRAS FORMAS DE PRESENTEAR */}
       <div className="w-fulFl flex flex-col justify-center items-center py-6">
 
-        <h1 className=" text-[22px] font-bold text-[#4F6B4A] text-center">
+        <h1 className=" text-[22px] font-bold nome-convidados text-[#4F6B4A] text-center">
           OUTRAS FORMAS DE PRESENTEAR
         </h1>
         
@@ -219,7 +219,7 @@ function List() {
           ⓘ
         </div>
 
-        <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
+        <p className="text-[14px] text-center leading-relaxed text-[#4F6B4A]">
           <strong>
 Caso nenhuma das opções acima seja ideal para você, também é possível contribuir com o valor que desejar para nos ajudar a montar nosso lar.            
            
