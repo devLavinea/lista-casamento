@@ -202,6 +202,7 @@ function List() {
           ))}
 
       </div>
+      
 
       {/* OUTRAS FORMAS DE PRESENTEAR */}
       <div className="w-fulFl flex flex-col justify-center items-center py-6">
