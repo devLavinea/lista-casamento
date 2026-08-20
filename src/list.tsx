@@ -19,7 +19,7 @@ interface Presente {
 function List() {
   const [presentes, setPresentes] = useState<Presente[]>([]);
 
-  // Controle da animação do aviso
+  // Controle do aviso inicial
   const [avisoInicial, setAvisoInicial] = useState(true);
   const [textoDigitado, setTextoDigitado] = useState("");
 
@@ -71,7 +71,7 @@ Clique em “Reservar” para escolher.`;
     buscarPresentes();
   }
 
-  // CANCELAR RESERVA DE PRESENTE NORMAL
+  // CANCELAR RESERVA
   async function cancelarReserva(id: number) {
     localStorage.removeItem(`reserva_${id}`);
 
@@ -107,7 +107,6 @@ Clique em “Reservar” para escolher.`;
       return;
     }
 
-    // Busca o valor atual no Supabase
     const { data, error: erroBusca } = await supabase
       .from("presentes")
       .select("valorArrecadado")
@@ -121,10 +120,8 @@ Clique em “Reservar” para escolher.`;
     }
 
     const valorAtual = Number(data?.valorArrecadado) || 0;
-
     const novoValor = valorAtual + valor;
 
-    // Atualiza somente o valor arrecadado
     const { error } = await supabase
       .from("presentes")
       .update({
@@ -138,7 +135,6 @@ Clique em “Reservar” para escolher.`;
       return;
     }
 
-    // Guarda localmente quem contribuiu
     const contribuicoesSalvas = JSON.parse(
       localStorage.getItem(`contribuicoes_${id}`) || "[]"
     );
@@ -153,16 +149,15 @@ Clique em “Reservar” para escolher.`;
       JSON.stringify(contribuicoesSalvas)
     );
 
-    // Atualiza a lista
     buscarPresentes();
   }
 
-  // BUSCA OS PRESENTES AO ABRIR A PÁGINA
+  // BUSCAR PRESENTES AO ABRIR
   useEffect(() => {
     buscarPresentes();
   }, []);
 
-  // EFEITO DE DIGITAÇÃO DO AVISO
+  // DIGITAÇÃO DO AVISO
   useEffect(() => {
     if (!avisoInicial) return;
 
@@ -176,91 +171,75 @@ Clique em “Reservar” para escolher.`;
       if (indice >= textoAviso.length) {
         clearInterval(intervalo);
 
-        // Aguarda um pouco depois de terminar a digitação
+        // Espera terminar a leitura
         setTimeout(() => {
           setAvisoInicial(false);
         }, 1200);
       }
     }, 35);
 
-    return () => clearInterval(intervalo);
+    return () => {
+      clearInterval(intervalo);
+    };
   }, [avisoInicial]);
 
   return (
     <section className="relative">
 
+      {/* =============================== */}
       {/* TÍTULO */}
-      <div className="w-full h-15 bg-[#4F6B4A] flex flex-col items-center justify-center gap-2">
+      {/* =============================== */}
+
+      <div className="w-full bg-[#4F6B4A] flex flex-col items-center justify-center py-2">
         <h1 className="text-[40px] nome-convidados font-semibold text-[#ffffff] text-center">
           Lista de Presentes
         </h1>
       </div>
 
-      {/* AVISO SOBRE OS VALORES */}
-      <div
-        className={`
-          z-50
-          bg-[#eef4e9]
-          text-[#4F6B4A]
-          flex items-center justify-center
-          transition-all duration-1000 ease-in-out
 
-          ${
-            avisoInicial
-              ? `
-                fixed
-                inset-0
-                w-full
-                h-full
-                rounded-none
-              `
-              : `
-                relative
-                w-auto
-                h-auto
-                mx-4
-                mt-2
-                mb-6
-                rounded-xl
-                px-3
-                py-3
-              `
-          }
-        `}
-      >
+      {/* ================================================= */}
+      {/* AVISO DE ABERTURA - FICA FIXO SOMENTE NO INÍCIO */}
+      {/* ================================================= */}
+
+      {avisoInicial && (
         <div
-          className={`
+          className="
+            fixed
+            inset-0
+            z-[9999]
+            w-full
+            h-full
+            bg-[#eef4e9]
+            text-[#4F6B4A]
             flex
-            items-start
-            gap-3
-            transition-all
-            duration-1000
-            ease-in-out
-
-            ${
-              avisoInicial
-                ? "w-[85%] max-w-[500px]"
-                : "w-full"
-            }
-          `}
+            items-center
+            justify-center
+          "
         >
-
-          {/* ÍCONE */}
           <div
-            id="aviso"
             className="
-              text-[#4F6B4A]
-              text-[22px]
-              leading-none
-              mt-1
-              flex-shrink-0
+              flex
+              items-start
+              gap-3
+              w-[85%]
+              max-w-[500px]
             "
           >
-            ⓘ
-          </div>
 
-          {/* TEXTO */}
-          {avisoInicial ? (
+            {/* ÍCONE */}
+            <div
+              className="
+                text-[#4F6B4A]
+                text-[22px]
+                leading-none
+                mt-1
+                flex-shrink-0
+              "
+            >
+              ⓘ
+            </div>
+
+            {/* TEXTO DIGITANDO */}
             <p
               className="
                 text-[18px]
@@ -272,7 +251,54 @@ Clique em “Reservar” para escolher.`;
               {textoDigitado}
               <span className="animate-pulse">|</span>
             </p>
-          ) : (
+
+          </div>
+        </div>
+      )}
+
+
+      {/* ================================================= */}
+      {/* AVISO NORMAL */}
+      {/* ================================================= */}
+
+      {!avisoInicial && (
+        <div
+          className="
+            relative
+            w-auto
+            mx-4
+            mt-2
+            mb-6
+            px-3
+            py-3
+            rounded-xl
+            bg-[#eef4e9]
+            text-[#4F6B4A]
+          "
+        >
+          <div
+            className="
+              flex
+              items-start
+              gap-3
+              w-full
+            "
+          >
+
+            {/* ÍCONE */}
+            <div
+              className="
+                text-[#4F6B4A]
+                text-[22px]
+                leading-none
+                mt-1
+                flex-shrink-0
+              "
+            >
+              ⓘ
+            </div>
+
+            {/* TEXTO */}
             <p
               className="
                 text-[13px]
@@ -297,11 +323,16 @@ Clique em “Reservar” para escolher.`;
 
               Clique em <strong>“Reservar”</strong> para escolher.
             </p>
-          )}
-        </div>
-      </div>
 
+          </div>
+        </div>
+      )}
+
+
+      {/* =============================== */}
       {/* PRESENTES NORMAIS */}
+      {/* =============================== */}
+
       <div className="grid grid-cols-1 gap-4 p-4">
         {presentes
           .filter(
@@ -324,7 +355,11 @@ Clique em “Reservar” para escolher.`;
           ))}
       </div>
 
+
+      {/* =============================== */}
       {/* CONTRIBUIÇÕES */}
+      {/* =============================== */}
+
       <div className="grid grid-cols-1 gap-4 p-4">
         {presentes
           .filter(
