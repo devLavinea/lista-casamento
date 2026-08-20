@@ -22,7 +22,9 @@ function List() {
   const [textoDigitado, setTextoDigitado] = useState("");
 
   const textoAviso = 
-    `O presente é totalmente opcional e, caso você escolha nos presentear,será recebido com muito carinho e alegria. 
+    `O presente é totalmente opcional!
+    
+    Caso você escolha nos presentear,será recebido com muito carinho e alegria. 
     
     Desde já, agradecemos imensamente por fazer parte desse momento tão especial para nós. 💚
 
