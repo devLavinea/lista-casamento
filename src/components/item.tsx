@@ -4,14 +4,15 @@ import "../index.css";
 interface ItemProps {
   id: number;
   nome: string;
-  descricao: string;
   imagem: string;
+  descricao: string;
   preco: string;
   link: string;
   reservado: boolean;
   onReservar: (id: number, nome: string) => void;
   onCancelar: (id: number) => void;
 }
+
 
 function Item({
   id,
