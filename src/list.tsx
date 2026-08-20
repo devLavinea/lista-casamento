@@ -217,7 +217,7 @@ function List() {
             </div>
 
             {/* TEXTO DIGITANDO */}
-            <p className="whitespace-pre-line text-[18px] leading-relaxed">
+            <p className="whitespace-pre-line text-[18px] text-align: center leading-relaxed">
               {textoDigitado}
               <span className="animate-pulse">|</span>
             </p>
