@@ -21,13 +21,12 @@ function List() {
   const [avisoInicial, setAvisoInicial] = useState(true);
   const [textoDigitado, setTextoDigitado] = useState("");
 
-  const textoAviso = `Apenas Sugestões
+  const textoAviso = 
+    `O presente é totalmente opcional e, caso você escolha nos presentear,
+    será recebido com muito carinho e alegria. Desde já, agradecemos imensamente pela lembrança, 
+    pelo carinho e por fazer parte desse momento tão especial para nós. 💚
 
-O valor é apenas uma referência.
-
-Você pode se juntar a um amigo ou familiar e dividir o presente.
-
-Clique em “Reservar” para escolher.`;
+Se preferir, você também pode se juntar a amigos ou familiares e dividir o valor do presente.`;
 
   // BUSCAR PRESENTES
   async function buscarPresentes() {
@@ -197,13 +196,9 @@ Clique em “Reservar” para escolher.`;
           <div className="mt-1 shrink-0 text-[22px] leading-none">
             ⓘ
           </div>
-
           {/* TEXTO */}
           <p className="w-full text-center text-[13px] leading-relaxed">
-            Apenas Sugestões <br />
             <strong>O valor é apenas uma referência.</strong> <br />
-            Você pode se juntar a um amigo ou familiar e dividir o presente.{" "}
-            <br />
             Clique em <strong>“Reservar”</strong> para escolher.
           </p>
         </div>
