@@ -248,7 +248,7 @@ function List() {
         {/* TÍTULO */}
       <div className="flex w-full flex-col items-center justify-center py-2">
         <h1 className="nome-convidados text-center text-[40px] font-semibold text-[#4F6B4A]">
-          Outra forma de presentear!
+          Outra forma de presentear:
         </h1>
       </div>
 
