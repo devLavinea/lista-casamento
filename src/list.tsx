@@ -17,9 +17,10 @@ interface Presente {
 }
 
 function List() {
-    const [avisoInicial, setAvisoInicial] = useState(true);
+  const [avisoInicial, setAvisoInicial] = useState(true);
   const [textoDigitado, setTextoDigitado] = useState("");
-  const [animacaoFinalizada, setAnimacaoFinalizada] = useState(false);
+
+  const [presentes, setPresentes] = useState<Presente[]>([]);
 
   const textoAviso = `Apenas Sugestões
 
@@ -28,9 +29,8 @@ O valor é apenas uma referência.
 Você pode se juntar a um amigo ou familiar e dividir o presente.
 
 Clique em “Reservar” para escolher.`;
-  
-  const [presentes, setPresentes] = useState<Presente[]>([]);
 
+  // BUSCAR PRESENTES
   async function buscarPresentes() {
     const { data, error } = await supabase
       .from("presentes")
@@ -70,7 +70,7 @@ Clique em “Reservar” para escolher.`;
     buscarPresentes();
   }
 
-  // CANCELAR RESERVA DE PRESENTE NORMAL
+  // CANCELAR RESERVA
   async function cancelarReserva(id: number) {
     localStorage.removeItem(`reserva_${id}`);
 
@@ -106,7 +106,6 @@ Clique em “Reservar” para escolher.`;
       return;
     }
 
-    // Busca o valor atual no Supabase
     const { data, error: erroBusca } = await supabase
       .from("presentes")
       .select("valorArrecadado")
@@ -120,10 +119,8 @@ Clique em “Reservar” para escolher.`;
     }
 
     const valorAtual = Number(data?.valorArrecadado) || 0;
-
     const novoValor = valorAtual + valor;
 
-    // Atualiza somente o valor arrecadado
     const { error } = await supabase
       .from("presentes")
       .update({
@@ -137,11 +134,9 @@ Clique em “Reservar” para escolher.`;
       return;
     }
 
-    // Guarda localmente quem contribuiu
-    const contribuicoesSalvas =
-      JSON.parse(
-        localStorage.getItem(`contribuicoes_${id}`) || "[]"
-      );
+    const contribuicoesSalvas = JSON.parse(
+      localStorage.getItem(`contribuicoes_${id}`) || "[]"
+    );
 
     contribuicoesSalvas.push({
       nome,
@@ -153,13 +148,15 @@ Clique em “Reservar” para escolher.`;
       JSON.stringify(contribuicoesSalvas)
     );
 
-    // Atualiza a lista
     buscarPresentes();
   }
 
+  // BUSCAR PRESENTES AO ABRIR
   useEffect(() => {
     buscarPresentes();
   }, []);
+
+  // ANIMAÇÃO DO AVISO
   useEffect(() => {
     if (!avisoInicial) return;
 
@@ -167,94 +164,118 @@ Clique em “Reservar” para escolher.`;
 
     const intervalo = setInterval(() => {
       setTextoDigitado(textoAviso.slice(0, indice + 1));
+
       indice++;
 
       if (indice >= textoAviso.length) {
         clearInterval(intervalo);
 
         setTimeout(() => {
-          setAnimacaoFinalizada(true);
-
-          setTimeout(() => {
-            setAvisoInicial(false);
-          }, 1000);
-        }, 800);
+          setAvisoInicial(false);
+        }, 1200);
       }
     }, 35);
 
-    return () => clearInterval(intervalo);
+    return () => {
+      clearInterval(intervalo);
+    };
   }, [avisoInicial]);
+
   return (
-    <section>
+    <section className="min-h-screen">
 
       {/* TÍTULO */}
-            <div className="w-full h-15 bg-[#4F6B4A] flex flex-col items-center justify-center gap-2">
-
-                <h1 className=" text-[40px] nome-convidados font-semibold text-[#ffffff] text-center">
-
+      <div className="w-full h-15 bg-[#4F6B4A] flex flex-col items-center justify-center gap-2">
+        <h1 className="text-[40px] nome-convidados font-semibold text-white text-center">
           Lista de Presentes
         </h1>
       </div>
 
-      {/* AVISO SOBRE OS VALORES */}
-<div
-  className={`
-    fixed z-50 bg-[#eef4e9] text-[#4F6B4A]
-    transition-all duration-1000 ease-in-out
-    flex items-center justify-center
-    ${
-      avisoInicial
-        ? "inset-0 w-full h-full rounded-none"
-        : "relative mx-4 mb-6 mt-2 w-auto h-auto rounded-xl px-3 py-3"
-    }
-  `}
->
-  <div
-    className={`
-      flex items-start gap-3
-      transition-all duration-1000 ease-in-out
-      ${
-        avisoInicial
-          ? "w-[85%] max-w-[500px] justify-center"
-          : "w-full"
-      }
-    `}
-  >
+      {/* AVISO INICIAL */}
+      <div
+        className={`
+          fixed z-50
+          bg-[#eef4e9]
+          text-[#4F6B4A]
+          flex items-center justify-center
+          transition-all duration-1000 ease-in-out
 
-    <div
-      id="aviso"
-      className={`
-        text-[#4F6B4A] text-[22px] leading-none mt-1
-        transition-opacity duration-500
-        ${avisoInicial ? "opacity-100" : "opacity-100"}
-      `}
-    >
-      ⓘ
-    </div>
+          ${
+            avisoInicial
+              ? "inset-0 w-full h-full rounded-none"
+              : "top-[108px] left-4 right-4 w-auto h-auto rounded-xl px-3 py-3"
+          }
+        `}
+      >
+        <div
+          className={`
+            flex items-start gap-3
+            transition-all duration-1000 ease-in-out
 
-    {avisoInicial ? (
-      <p className="text-[18px] leading-relaxed text-[#4F6B4A] whitespace-pre-line">
-        {textoDigitado}
-        <span className="animate-pulse">|</span>
-      </p>
-    ) : (
-      <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
-        Apenas Sugestões
-        <br />
-        <strong>O valor é apenas uma referência.</strong>
-        <br />
-        Você pode se juntar a um amigo ou familiar e dividir o presente.
-        <br />
-        Clique em <strong>“Reservar”</strong> para escolher.
-      </p>
-    )}
+            ${
+              avisoInicial
+                ? "w-[85%] max-w-[500px]"
+                : "w-full"
+            }
+          `}
+        >
 
-  </div>
-</div>
+          {/* ÍCONE */}
+          <div
+            className="
+              text-[#4F6B4A]
+              text-[22px]
+              leading-none
+              mt-1
+              flex-shrink-0
+            "
+          >
+            ⓘ
+          </div>
+
+          {/* TEXTO */}
+          <p
+            className={`
+              text-[#4F6B4A]
+              whitespace-pre-line
+              transition-all duration-1000 ease-in-out
+
+              ${
+                avisoInicial
+                  ? "text-[18px] leading-relaxed text-left"
+                  : "text-[13px] leading-relaxed text-center w-full"
+              }
+            `}
+          >
+            {avisoInicial ? (
+              <>
+                {textoDigitado}
+                <span className="animate-pulse">|</span>
+              </>
+            ) : (
+              <>
+                Apenas Sugestões
+                <br />
+
+                <strong>
+                  O valor é apenas uma referência.
+                </strong>
+
+                <br />
+
+                Você pode se juntar a um amigo ou familiar e dividir o presente.
+
+                <br />
+
+                Clique em <strong>“Reservar”</strong> para escolher.
+              </>
+            )}
+          </p>
+        </div>
+      </div>
 
       {/* PRESENTES NORMAIS */}
       <div className="grid grid-cols-1 gap-4 p-4">
-
         {presentes
           .filter(
             (presente) =>
@@ -274,21 +295,16 @@ Clique em “Reservar” para escolher.`;
               onCancelar={cancelarReserva}
             />
           ))}
-
       </div>
-
-  
 
       {/* OUTRAS FORMAS DE PRESENTEAR */}
-      <div className="w-fulFl flex flex-col justify-center items-center py-6">
-
-        <h1 className=" text-[40px] font-bold nome-convidados text-[#4F6B4A] text-center">
+      <div className="w-full flex flex-col justify-center items-center py-6">
+        <h1 className="text-[40px] font-bold nome-convidados text-[#4F6B4A] text-center">
           Outras formas de presentear
         </h1>
-        
       </div>
 
-      {/* AVISO SOBRE OS VALORES */}
+      {/* AVISO SOBRE CONTRIBUIÇÃO */}
       <div className="mx-4 mb-6 mt-2 rounded-xl bg-[#eef4e9] px-3 py-3 flex items-start gap-3">
 
         <div className="text-[#4F6B4A] text-lg leading-none mt-1">
@@ -297,8 +313,9 @@ Clique em “Reservar” para escolher.`;
 
         <p className="text-[14px] text-center leading-relaxed text-[#4F6B4A]">
           <strong>
-Caso nenhuma das opções acima seja ideal para você, também é possível contribuir com o valor que desejar para nos ajudar a montar nosso lar.            
-           
+            Caso nenhuma das opções acima seja ideal para você,
+            também é possível contribuir com o valor que desejar
+            para nos ajudar a montar nosso lar.
           </strong>
         </p>
 
@@ -306,7 +323,6 @@ Caso nenhuma das opções acima seja ideal para você, também é possível cont
 
       {/* CONTRIBUIÇÕES */}
       <div className="grid grid-cols-1 gap-4 p-4">
-
         {presentes
           .filter(
             (presente) =>
@@ -320,18 +336,13 @@ Caso nenhuma das opções acima seja ideal para você, também é possível cont
               imagem={presente.imagem}
               preco={presente.preco}
               valorArrecadado={
-                Number(
-                  presente.valorArrecadado
-                ) || 0
+                Number(presente.valorArrecadado) || 0
               }
               reservado={false}
-              onContribuir={
-                registrarContribuicao
-              }
+              onContribuir={registrarContribuicao}
               onCancelar={() => {}}
             />
           ))}
-
       </div>
 
     </section>
