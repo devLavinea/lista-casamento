@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+
 import noivos from "/noivos.png";
 import fundoEsquerdo from "/fundo_esquerdo.png";
 import fundoDireito from "/fundo_direito.png";
@@ -18,51 +19,68 @@ function App() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
+  // Abre o convite e inicia música + vídeo
   const abrirConvite = () => {
     setAbrindo(true);
 
-    // Começa a música ao clicar no lacre
+    // Inicia a música
     if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+
       audioRef.current.play().catch((erro) => {
         console.log("Não foi possível iniciar a música:", erro);
       });
     }
 
+    // Inicia o vídeo
     if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+
       videoRef.current.play().catch((erro) => {
         console.log("Erro ao iniciar o vídeo:", erro);
       });
     }
   };
 
+  // Para a música completamente
   const pararMusica = () => {
     if (audioRef.current) {
       audioRef.current.pause();
+      audioRef.current.currentTime = 0;
     }
+  };
+
+  // Quando o vídeo terminar
+  const videoTerminou = () => {
+    setMostrarConvite(true);
   };
 
   return (
     <>
+      {/* MÚSICA */}
       <audio
         ref={audioRef}
         src={audio}
         loop
+        preload="auto"
       />
 
       <section
         id="convite"
         className="relative overflow-hidden w-screen h-screen"
       >
+        {/* VÍDEO */}
         <video
           src={video}
           ref={videoRef}
           playsInline
-          onEnded={() => setMostrarConvite(true)}
+          onEnded={videoTerminou}
           className={`video-convite absolute w-full h-full ${
             mostrarConvite ? "hidden" : ""
           }`}
         />
 
+        {/* CONVITE */}
         <div
           id="convite-content"
           className={`${
@@ -73,23 +91,44 @@ function App() {
           }}
         >
           <p className="text-[#4a5c36] leading-tight text-[20px]">
-            Venha comemorar conosco <br></br> no nosso jantar de casamento!
+            Venha comemorar conosco <br />
+            no nosso jantar de casamento!
           </p>
 
-          <img src={ornamento2} className="h-5.5"></img>
+          <img
+            src={ornamento2}
+            className="h-5.5"
+            alt=""
+          />
 
-          <img src={noivos} className="w-70"></img>
+          <img
+            src={noivos}
+            className="w-70"
+            alt="Noivos"
+          />
 
-          <img src={ornamento2} className="h-5.5"></img>
+          <img
+            src={ornamento2}
+            className="h-5.5"
+            alt=""
+          />
 
           <span className="text-[#4a5c36] text-[22px]">
-            24 de outubro de 2026, <strong>às 18:00</strong>
+            24 de outubro de 2026,{" "}
+            <strong>às 18:00</strong>
           </span>
 
-          <img src={ornamento3} className="h-6 mb-2"></img>
+          <img
+            src={ornamento3}
+            className="h-6 mb-2"
+            alt=""
+          />
 
+          {/* BOTÃO LOCAL DO EVENTO */}
           <button
+            type="button"
             onClick={() => {
+              // PARA A MÚSICA ANTES DE ABRIR O MAPA
               pararMusica();
 
               window.open(
@@ -111,6 +150,7 @@ function App() {
                 strokeLinejoin="round"
                 d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
               />
+
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -121,8 +161,15 @@ function App() {
             Local do evento
           </button>
 
-          <Link className="" to="/lista">
-            <button className="shadow-button mt-2 text-[18px] w-50 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-2">
+          {/* BOTÃO LISTA DE PRESENTES */}
+          <Link
+            to="/lista"
+            onClick={pararMusica}
+          >
+            <button
+              type="button"
+              className="shadow-button mt-2 text-[18px] w-50 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-2"
+            >
               <svg
                 className="size-5"
                 fill="none"
@@ -142,11 +189,12 @@ function App() {
           </Link>
         </div>
 
+        {/* CAPA DO CONVITE */}
         <section
           id="capa-convite"
           className="absolute z-10 justify-center w-screen h-screen perspective"
         >
-          {/* Página esquerda */}
+          {/* PÁGINA ESQUERDA */}
           <div
             className={`absolute w-1/2 h-screen shadow z-11 ${
               abrindo ? "abrir-esquerda" : ""
@@ -159,7 +207,7 @@ function App() {
             />
           </div>
 
-          {/* Página direita */}
+          {/* PÁGINA DIREITA */}
           <div
             className={`absolute w-1/2 h-screen left-[50%] z-10 ${
               abrindo ? "abrir-direita" : ""
@@ -172,11 +220,12 @@ function App() {
             />
           </div>
 
-          {/* Lacre + faixa */}
+          {/* LACRE + FAIXA */}
           <div className="absolute p-4 w-full h-full flex justify-center items-center z-12">
+            {/* LACRE */}
             <img
               src={lacre}
-              alt=""
+              alt="Lacre"
               onClick={abrirConvite}
               className={`absolute z-10 w-28.75 h-28.75 cursor-pointer ${
                 abrindo
@@ -185,6 +234,7 @@ function App() {
               }`}
             />
 
+            {/* FAIXA */}
             <div
               className={`w-40 bg-white p-2 pl-14 left-1/2 absolute z-8 text-center text-[13px] shadow-all leading-[0.9] text-[#2f4728] ${
                 abrindo ? "cair-faixa" : ""
