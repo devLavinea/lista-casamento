@@ -188,11 +188,11 @@ Se preferir, você também pode se juntar a um amigo ou familiar e dividir o val
       </div>
 
       {/* AVISO PEQUENO DA PÁGINA */}
-      <div className="mx-4 mt-2 mb-6 rounded-xl bg-[#eef4e9] px-3 py-3 text-[#4F6B4A]">
+      <div className="mx-4 mt-2 mb-6 rounded-xl bg-[#eef4e9] flex flex-col px-3 py-3 text-[#4F6B4A]">
         <div className="flex w-full items-start gap-3">
           {/* ÍCONE */}
           <div className="mt-1 shrink-0 text-[22px] leading-none">
-            ⓘ
+            ⓘ 
           </div>
           {/* TEXTO */}
           <p className="w-full text-center text-[13px] leading-relaxed">
