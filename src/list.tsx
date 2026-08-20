@@ -217,7 +217,7 @@ function List() {
             </div>
 
             {/* TEXTO DIGITANDO */}
-            <p className="whitespace-pre-line text-[18px] text-align: center leading-relaxed">
+            <p className="whitespace-pre-line text-[18px] text-center leading-relaxed">
               {textoDigitado}
               <span className="animate-pulse">|</span>
             </p>
@@ -261,7 +261,7 @@ function List() {
           </div>
           {/* TEXTO */}
           <p className="w-full text-center text-[13px] leading-relaxed">
-       <strong>Se nenhuma opção agradar, você pode contribuir para a compra de um item.</strong>
+       <strong>Se nenhuma opção acima agradar, você pode contribuir para a compra de um item.</strong>
           </p>
         </div>
       </div>
