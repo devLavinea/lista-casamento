@@ -17,6 +17,18 @@ interface Presente {
 }
 
 function List() {
+    const [avisoInicial, setAvisoInicial] = useState(true);
+  const [textoDigitado, setTextoDigitado] = useState("");
+  const [animacaoFinalizada, setAnimacaoFinalizada] = useState(false);
+
+  const textoAviso = `Apenas Sugestões
+
+O valor é apenas uma referência.
+
+Você pode se juntar a um amigo ou familiar e dividir o presente.
+
+Clique em “Reservar” para escolher.`;
+  
   const [presentes, setPresentes] = useState<Presente[]>([]);
 
   async function buscarPresentes() {
@@ -148,7 +160,30 @@ function List() {
   useEffect(() => {
     buscarPresentes();
   }, []);
+  useEffect(() => {
+    if (!avisoInicial) return;
 
+    let indice = 0;
+
+    const intervalo = setInterval(() => {
+      setTextoDigitado(textoAviso.slice(0, indice + 1));
+      indice++;
+
+      if (indice >= textoAviso.length) {
+        clearInterval(intervalo);
+
+        setTimeout(() => {
+          setAnimacaoFinalizada(true);
+
+          setTimeout(() => {
+            setAvisoInicial(false);
+          }, 1000);
+        }, 800);
+      }
+    }, 35);
+
+    return () => clearInterval(intervalo);
+  }, [avisoInicial]);
   return (
     <section>
 
@@ -162,21 +197,60 @@ function List() {
       </div>
 
       {/* AVISO SOBRE OS VALORES */}
-      <div className="mx-4 mb-6 mt-2 rounded-xl bg-[#eef4e9] px-3 py-3 flex items-start gap-3">
+<div
+  className={`
+    fixed z-50 bg-[#eef4e9] text-[#4F6B4A]
+    transition-all duration-1000 ease-in-out
+    flex items-center justify-center
+    ${
+      avisoInicial
+        ? "inset-0 w-full h-full rounded-none"
+        : "relative mx-4 mb-6 mt-2 w-auto h-auto rounded-xl px-3 py-3"
+    }
+  `}
+>
+  <div
+    className={`
+      flex items-start gap-3
+      transition-all duration-1000 ease-in-out
+      ${
+        avisoInicial
+          ? "w-[85%] max-w-[500px] justify-center"
+          : "w-full"
+      }
+    `}
+  >
 
-        <div className="text-[#4F6B4A] text-[22px] leading-none mt-1">
-          ⓘ
-        </div>
+    <div
+      id="aviso"
+      className={`
+        text-[#4F6B4A] text-[22px] leading-none mt-1
+        transition-opacity duration-500
+        ${avisoInicial ? "opacity-100" : "opacity-100"}
+      `}
+    >
+      ⓘ
+    </div>
 
-        <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
-  Sugestões escolhidas com carinho. <br /> <strong >O valor é apenas uma referência.</strong>
-  <br />
-   Você pode se juntar a um amigo ou familiar e dividir o presente.
-  <br />
-  Clique em <strong>“Reservar”</strong> para escolher.
-</p>
+    {avisoInicial ? (
+      <p className="text-[18px] leading-relaxed text-[#4F6B4A] whitespace-pre-line">
+        {textoDigitado}
+        <span className="animate-pulse">|</span>
+      </p>
+    ) : (
+      <p className="text-[13px] text-center leading-relaxed text-[#4F6B4A]">
+        Apenas Sugestões
+        <br />
+        <strong>O valor é apenas uma referência.</strong>
+        <br />
+        Você pode se juntar a um amigo ou familiar e dividir o presente.
+        <br />
+        Clique em <strong>“Reservar”</strong> para escolher.
+      </p>
+    )}
 
-      </div>
+  </div>
+</div>
 
       {/* PRESENTES NORMAIS */}
       <div className="grid grid-cols-1 gap-4 p-4">
