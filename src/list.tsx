@@ -19,7 +19,7 @@ interface Presente {
 function List() {
   const [presentes, setPresentes] = useState<Presente[]>([]);
 
-  // Controle do aviso inicial
+  // Controla somente o aviso de abertura
   const [avisoInicial, setAvisoInicial] = useState(true);
   const [textoDigitado, setTextoDigitado] = useState("");
 
@@ -31,7 +31,10 @@ Você pode se juntar a um amigo ou familiar e dividir o presente.
 
 Clique em “Reservar” para escolher.`;
 
-  // Buscar presentes
+  // ===============================
+  // BUSCAR PRESENTES
+  // ===============================
+
   async function buscarPresentes() {
     const { data, error } = await supabase
       .from("presentes")
@@ -46,7 +49,10 @@ Clique em “Reservar” para escolher.`;
     setPresentes(data || []);
   }
 
-  // RESERVAR PRESENTE NORMAL
+  // ===============================
+  // RESERVAR PRESENTE
+  // ===============================
+
   async function reservarPresente(id: number, nome: string) {
     if (!nome.trim()) {
       alert("Digite seu nome");
@@ -71,7 +77,10 @@ Clique em “Reservar” para escolher.`;
     buscarPresentes();
   }
 
+  // ===============================
   // CANCELAR RESERVA
+  // ===============================
+
   async function cancelarReserva(id: number) {
     localStorage.removeItem(`reserva_${id}`);
 
@@ -91,7 +100,10 @@ Clique em “Reservar” para escolher.`;
     buscarPresentes();
   }
 
+  // ===============================
   // REGISTRAR CONTRIBUIÇÃO
+  // ===============================
+
   async function registrarContribuicao(
     id: number,
     nome: string,
@@ -120,6 +132,7 @@ Clique em “Reservar” para escolher.`;
     }
 
     const valorAtual = Number(data?.valorArrecadado) || 0;
+
     const novoValor = valorAtual + valor;
 
     const { error } = await supabase
@@ -152,12 +165,18 @@ Clique em “Reservar” para escolher.`;
     buscarPresentes();
   }
 
-  // BUSCAR PRESENTES AO ABRIR
+  // ===============================
+  // BUSCAR AO ABRIR A PÁGINA
+  // ===============================
+
   useEffect(() => {
     buscarPresentes();
   }, []);
 
-  // DIGITAÇÃO DO AVISO
+  // ===============================
+  // ANIMAÇÃO DO AVISO INICIAL
+  // ===============================
+
   useEffect(() => {
     if (!avisoInicial) return;
 
@@ -171,8 +190,9 @@ Clique em “Reservar” para escolher.`;
       if (indice >= textoAviso.length) {
         clearInterval(intervalo);
 
-        // Espera terminar a leitura
+        // Tempo para visualizar o texto completo
         setTimeout(() => {
+          // O aviso grande simplesmente desaparece
           setAvisoInicial(false);
         }, 1200);
       }
@@ -186,9 +206,9 @@ Clique em “Reservar” para escolher.`;
   return (
     <section className="relative">
 
-      {/* =============================== */}
+      {/* ================================================= */}
       {/* TÍTULO */}
-      {/* =============================== */}
+      {/* ================================================= */}
 
       <div className="w-full bg-[#4F6B4A] flex flex-col items-center justify-center py-2">
         <h1 className="text-[40px] nome-convidados font-semibold text-[#ffffff] text-center">
@@ -198,8 +218,96 @@ Clique em “Reservar” para escolher.`;
 
 
       {/* ================================================= */}
-      {/* AVISO DE ABERTURA - FICA FIXO SOMENTE NO INÍCIO */}
+      {/* AVISO PEQUENO DA PÁGINA */}
       {/* ================================================= */}
+      {/* 
+          ESTE AVISO SEMPRE EXISTE NO FLUXO NORMAL DA PÁGINA.
+
+          Ele NÃO é fixed.
+          Ele NÃO é sticky.
+          Ele NÃO é absolute.
+
+          Portanto, quando a página rolar, ele rola junto.
+      */}
+
+      <div
+        className="
+          relative
+          w-auto
+          mx-4
+          mt-2
+          mb-6
+          px-3
+          py-3
+          rounded-xl
+          bg-[#eef4e9]
+          text-[#4F6B4A]
+        "
+      >
+        <div
+          className="
+            flex
+            items-start
+            gap-3
+            w-full
+          "
+        >
+
+          {/* ÍCONE */}
+          <div
+            className="
+              text-[#4F6B4A]
+              text-[22px]
+              leading-none
+              mt-1
+              flex-shrink-0
+            "
+          >
+            ⓘ
+          </div>
+
+          {/* TEXTO */}
+          <p
+            className="
+              text-[13px]
+              text-center
+              leading-relaxed
+              text-[#4F6B4A]
+              w-full
+            "
+          >
+            Apenas Sugestões
+            <br />
+
+            <strong>
+              O valor é apenas uma referência.
+            </strong>
+
+            <br />
+
+            Você pode se juntar a um amigo ou familiar e dividir o presente.
+
+            <br />
+
+            Clique em <strong>“Reservar”</strong> para escolher.
+          </p>
+
+        </div>
+      </div>
+
+
+      {/* ================================================= */}
+      {/* AVISO DE ABERTURA */}
+      {/* ================================================= */}
+      {/* 
+          ESTE É OUTRO ELEMENTO.
+
+          Ele começa fixed.
+          Digita as letras.
+          Depois desaparece completamente.
+
+          Ele NÃO se transforma no aviso pequeno.
+      */}
 
       {avisoInicial && (
         <div
@@ -258,80 +366,8 @@ Clique em “Reservar” para escolher.`;
 
 
       {/* ================================================= */}
-      {/* AVISO NORMAL */}
-      {/* ================================================= */}
-
-      {!avisoInicial && (
-        <div
-          className="
-            relative
-            w-auto
-            mx-4
-            mt-2
-            mb-6
-            px-3
-            py-3
-            rounded-xl
-            bg-[#eef4e9]
-            text-[#4F6B4A]
-          "
-        >
-          <div
-            className="
-              flex
-              items-start
-              gap-3
-              w-full
-            "
-          >
-
-            {/* ÍCONE */}
-            <div
-              className="
-                text-[#4F6B4A]
-                text-[22px]
-                leading-none
-                mt-1
-                flex-shrink-0
-              "
-            >
-              ⓘ
-            </div>
-
-            {/* TEXTO */}
-            <p
-              className="
-                text-[13px]
-                text-center
-                leading-relaxed
-                text-[#4F6B4A]
-                w-full
-              "
-            >
-              Apenas Sugestões
-              <br />
-
-              <strong>
-                O valor é apenas uma referência.
-              </strong>
-
-              <br />
-
-              Você pode se juntar a um amigo ou familiar e dividir o presente.
-
-              <br />
-
-              Clique em <strong>“Reservar”</strong> para escolher.
-            </p>
-
-          </div>
-        </div>
-      )}
-
-
-      {/* =============================== */}
       {/* PRESENTES NORMAIS */}
-      {/* =============================== */}
+      {/* ================================================= */}
 
       <div className="grid grid-cols-1 gap-4 p-4">
         {presentes
@@ -356,9 +392,9 @@ Clique em “Reservar” para escolher.`;
       </div>
 
 
-      {/* =============================== */}
+      {/* ================================================= */}
       {/* CONTRIBUIÇÕES */}
-      {/* =============================== */}
+      {/* ================================================= */}
 
       <div className="grid grid-cols-1 gap-4 p-4">
         {presentes
