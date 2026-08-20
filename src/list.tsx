@@ -24,11 +24,11 @@ function List() {
   const textoAviso = 
     `O presente é totalmente opcional!
     
-    Caso você escolha nos presentear,será recebido com muito carinho e alegria. 
-    
-    Desde já, agradecemos imensamente por fazer parte desse momento tão especial para nós. 💚
+    Caso você escolha nos presentear, será recebido com muito carinho e alegria. 
 
-    Se preferir, você também pode se juntar a um amigo ou familiar e dividir o valor do presente.`;
+    Se preferir, você também pode se juntar a um amigo ou familiar e dividir o valor do presente.
+    
+    Desde já, agradecemos imensamente pelo carinho. 💚`;
 
   // BUSCAR PRESENTES
   async function buscarPresentes() {
