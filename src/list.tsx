@@ -18,8 +18,6 @@ interface Presente {
 
 function List() {
   const [presentes, setPresentes] = useState<Presente[]>([]);
-
-  // Controla somente o aviso de abertura
   const [avisoInicial, setAvisoInicial] = useState(true);
   const [textoDigitado, setTextoDigitado] = useState("");
 
@@ -31,10 +29,7 @@ Você pode se juntar a um amigo ou familiar e dividir o presente.
 
 Clique em “Reservar” para escolher.`;
 
-  // ===============================
   // BUSCAR PRESENTES
-  // ===============================
-
   async function buscarPresentes() {
     const { data, error } = await supabase
       .from("presentes")
@@ -49,10 +44,7 @@ Clique em “Reservar” para escolher.`;
     setPresentes(data || []);
   }
 
-  // ===============================
   // RESERVAR PRESENTE
-  // ===============================
-
   async function reservarPresente(id: number, nome: string) {
     if (!nome.trim()) {
       alert("Digite seu nome");
@@ -77,10 +69,7 @@ Clique em “Reservar” para escolher.`;
     buscarPresentes();
   }
 
-  // ===============================
   // CANCELAR RESERVA
-  // ===============================
-
   async function cancelarReserva(id: number) {
     localStorage.removeItem(`reserva_${id}`);
 
@@ -100,10 +89,7 @@ Clique em “Reservar” para escolher.`;
     buscarPresentes();
   }
 
-  // ===============================
   // REGISTRAR CONTRIBUIÇÃO
-  // ===============================
-
   async function registrarContribuicao(
     id: number,
     nome: string,
@@ -132,7 +118,6 @@ Clique em “Reservar” para escolher.`;
     }
 
     const valorAtual = Number(data?.valorArrecadado) || 0;
-
     const novoValor = valorAtual + valor;
 
     const { error } = await supabase
@@ -165,34 +150,26 @@ Clique em “Reservar” para escolher.`;
     buscarPresentes();
   }
 
-  // ===============================
   // BUSCAR AO ABRIR A PÁGINA
-  // ===============================
-
   useEffect(() => {
     buscarPresentes();
   }, []);
 
-  // ===============================
   // ANIMAÇÃO DO AVISO INICIAL
-  // ===============================
-
   useEffect(() => {
     if (!avisoInicial) return;
 
     let indice = 0;
+    let timeout: ReturnType<typeof setTimeout>;
 
     const intervalo = setInterval(() => {
       setTextoDigitado(textoAviso.slice(0, indice + 1));
-
       indice++;
 
       if (indice >= textoAviso.length) {
         clearInterval(intervalo);
 
-        // Tempo para visualizar o texto completo
-        setTimeout(() => {
-          // O aviso grande simplesmente desaparece
+        timeout = setTimeout(() => {
           setAvisoInicial(false);
         }, 1200);
       }
@@ -200,92 +177,60 @@ Clique em “Reservar” para escolher.`;
 
     return () => {
       clearInterval(intervalo);
+      clearTimeout(timeout);
     };
   }, [avisoInicial]);
 
   return (
     <section className="relative">
-
-      {/* ================================================= */}
       {/* TÍTULO */}
-      {/* ================================================= */}
-
-      <div className="w-full bg-[#4F6B4A] flex flex-col items-center justify-center py-2">
-        <h1 className="text-[40px] nome-convidados font-semibold text-[#ffffff] text-center">
+      <div className="flex w-full flex-col items-center justify-center bg-[#4F6B4A] py-2">
+        <h1 className="nome-convidados text-center text-[40px] font-semibold text-white">
           Lista de Presentes
         </h1>
       </div>
 
-
-      {/* ================================================= */}
       {/* AVISO PEQUENO DA PÁGINA */}
-      {/* ================================================= */}
-      {/* 
-          ESTE AVISO SEMPRE EXISTE NO FLUXO NORMAL DA PÁGINA.
-
-          Ele NÃO é fixed.
-          Ele NÃO é sticky.
-          Ele NÃO é absolute.
-
-          Portanto, quando a página rolar, ele rola junto.
-      */}
-
-      <div className="  w-auto mx-4 mt-2n mb-6 px-3 py-3  rounded-xl bg-[#eef4e9]text-[#4F6B4A]">
-        <div className=" flex items-start gap-3 w-full " >
-
+      <div className="mx-4 mt-2 mb-6 rounded-xl bg-[#eef4e9] px-3 py-3 text-[#4F6B4A]">
+        <div className="flex w-full items-start gap-3">
           {/* ÍCONE */}
-          <div className=" text-[#4F6B4A] text-[22px] leading-none mt-1 flex-shrink-0 " >
+          <div className="mt-1 shrink-0 text-[22px] leading-none">
             ⓘ
           </div>
 
           {/* TEXTO */}
-          <p className=" text-[13px] text-center leading-relaxed text-[#4F6B4A] w-full " >
-            Apenas Sugestões <br /> <strong> O valor é apenas uma referência. </strong> <br /> Você pode se juntar a um amigo ou familiar e dividir o presente. <br />  Clique em <strong>“Reservar”</strong> para escolher.
+          <p className="w-full text-center text-[13px] leading-relaxed">
+            Apenas Sugestões <br />
+            <strong>O valor é apenas uma referência.</strong> <br />
+            Você pode se juntar a um amigo ou familiar e dividir o presente.{" "}
+            <br />
+            Clique em <strong>“Reservar”</strong> para escolher.
           </p>
-
         </div>
       </div>
 
-
-      {/* ================================================= */}
       {/* AVISO DE ABERTURA */}
-      {/* ================================================= */}
-      {/* 
-          ESTE É OUTRO ELEMENTO.
+      {avisoInicial && (
+        <div className="fixed inset-0 z-[9999] flex h-full w-full items-center justify-center bg-[#eef4e9] text-[#4F6B4A]">
+          <div className="flex w-[85%] max-w-[500px] items-start gap-3">
+            {/* ÍCONE */}
+            <div className="mt-1 shrink-0 text-[22px] leading-none">
+              ⓘ
+            </div>
 
-          Ele começa fixed.
-          Digita as letras.
-          Depois desaparece completamente.
+            {/* TEXTO DIGITANDO */}
+            <p className="whitespace-pre-line text-[18px] leading-relaxed">
+              {textoDigitado}
+              <span className="animate-pulse">|</span>
+            </p>
+          </div>
+        </div>
+      )}
 
-          Ele NÃO se transforma no aviso pequeno.
-      */}
-{avisoInicial && (
-  <div className="fixed inset-0 z-[9999] w-full h-full bg-[#eef4e9] text-[#4F6B4A] flex items-center justify-center">
-    <div className="flex items-start gap-3 w-[85%] max-w-[500px]">
-      {/* ÍCONE */}
-      <div className="text-[#4F6B4A] text-[22px] leading-none mt-1 flex-shrink-0">
-        ⓘ
-      </div>
-
-      {/* TEXTO DIGITANDO */}
-      <p className="text-[18px] leading-relaxed text-[#4F6B4A] whitespace-pre-line">
-        {textoDigitado}<span className="animate-pulse">|</span>
-      </p>
-    </div>
-  </div>
-)}
-
-
-      {/* ================================================= */}
       {/* PRESENTES NORMAIS */}
-      {/* ================================================= */}
-
       <div className="grid grid-cols-1 gap-4 p-4">
         {presentes
-          .filter(
-            (presente) =>
-              presente.tipo === "presente"
-          )
+          .filter((presente) => presente.tipo === "presente")
           .map((presente) => (
             <Item
               key={presente.id}
@@ -302,17 +247,10 @@ Clique em “Reservar” para escolher.`;
           ))}
       </div>
 
-
-      {/* ================================================= */}
       {/* CONTRIBUIÇÕES */}
-      {/* ================================================= */}
-
       <div className="grid grid-cols-1 gap-4 p-4">
         {presentes
-          .filter(
-            (presente) =>
-              presente.tipo === "contribuicao"
-          )
+          .filter((presente) => presente.tipo === "contribuicao")
           .map((presente) => (
             <ItemContribuinte
               key={presente.id}
@@ -326,7 +264,6 @@ Clique em “Reservar” para escolher.`;
             />
           ))}
       </div>
-
     </section>
   );
 }
