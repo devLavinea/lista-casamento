@@ -6,6 +6,7 @@ interface ItemProps {
   nome: string;
   imagem: string;
   preco: string;
+  descricao: string;
   valorArrecadado: number;
   reservado: boolean;
   onContribuir: (
