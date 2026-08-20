@@ -230,66 +230,17 @@ Clique em “Reservar” para escolher.`;
           Portanto, quando a página rolar, ele rola junto.
       */}
 
-      <div
-        className="
-          relative
-          w-auto
-          mx-4
-          mt-2
-          mb-6
-          px-3
-          py-3
-          rounded-xl
-          bg-[#eef4e9]
-          text-[#4F6B4A]
-        "
-      >
-        <div
-          className="
-            flex
-            items-start
-            gap-3
-            w-full
-          "
-        >
+      <div className="  w-auto mx-4 mt-2n mb-6 px-3 py-3  rounded-xl bg-[#eef4e9]text-[#4F6B4A]">
+        <div className=" flex items-start gap-3 w-full " >
 
           {/* ÍCONE */}
-          <div
-            className="
-              text-[#4F6B4A]
-              text-[22px]
-              leading-none
-              mt-1
-              flex-shrink-0
-            "
-          >
+          <div className=" text-[#4F6B4A] text-[22px] leading-none mt-1 flex-shrink-0 " >
             ⓘ
           </div>
 
           {/* TEXTO */}
-          <p
-            className="
-              text-[13px]
-              text-center
-              leading-relaxed
-              text-[#4F6B4A]
-              w-full
-            "
-          >
-            Apenas Sugestões
-            <br />
-
-            <strong>
-              O valor é apenas uma referência.
-            </strong>
-
-            <br />
-
-            Você pode se juntar a um amigo ou familiar e dividir o presente.
-
-            <br />
-
-            Clique em <strong>“Reservar”</strong> para escolher.
+          <p className=" text-[13px] text-center leading-relaxed text-[#4F6B4A] w-full " >
+            Apenas Sugestões <br /> <strong> O valor é apenas uma referência. </strong> <br /> Você pode se juntar a um amigo ou familiar e dividir o presente. <br />  Clique em <strong>“Reservar”</strong> para escolher.
           </p>
 
         </div>
@@ -308,61 +259,21 @@ Clique em “Reservar” para escolher.`;
 
           Ele NÃO se transforma no aviso pequeno.
       */}
+{avisoInicial && (
+  <div className="fixed inset-0 z-[9999] w-full h-full bg-[#eef4e9] text-[#4F6B4A] flex items-center justify-center">
+    <div className="flex items-start gap-3 w-[85%] max-w-[500px]">
+      {/* ÍCONE */}
+      <div className="text-[#4F6B4A] text-[22px] leading-none mt-1 flex-shrink-0">
+        ⓘ
+      </div>
 
-      {avisoInicial && (
-        <div
-          className="
-            fixed
-            inset-0
-            z-[9999]
-            w-full
-            h-full
-            bg-[#eef4e9]
-            text-[#4F6B4A]
-            flex
-            items-center
-            justify-center
-          "
-        >
-          <div
-            className="
-              flex
-              items-start
-              gap-3
-              w-[85%]
-              max-w-[500px]
-            "
-          >
-
-            {/* ÍCONE */}
-            <div
-              className="
-                text-[#4F6B4A]
-                text-[22px]
-                leading-none
-                mt-1
-                flex-shrink-0
-              "
-            >
-              ⓘ
-            </div>
-
-            {/* TEXTO DIGITANDO */}
-            <p
-              className="
-                text-[18px]
-                leading-relaxed
-                text-[#4F6B4A]
-                whitespace-pre-line
-              "
-            >
-              {textoDigitado}
-              <span className="animate-pulse">|</span>
-            </p>
-
-          </div>
-        </div>
-      )}
+      {/* TEXTO DIGITANDO */}
+      <p className="text-[18px] leading-relaxed text-[#4F6B4A] whitespace-pre-line">
+        {textoDigitado}<span className="animate-pulse">|</span>
+      </p>
+    </div>
+  </div>
+)}
 
 
       {/* ================================================= */}
