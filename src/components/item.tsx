@@ -154,9 +154,7 @@ function Item({
   🛒 Comprar
 </button>
 
-              <button className="flex items-center justify-center gap-1 border border-[#4F6B4A] text-[#4F6B4A] text-[13px] py-1 rounded-lg">
-                💡 Sugestões
-              </button>
+              
 
               <button
                 onClick={() => onCancelar(id)}
