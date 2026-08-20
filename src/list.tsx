@@ -22,7 +22,8 @@ function List() {
   const [textoDigitado, setTextoDigitado] = useState("");
 
   const textoAviso = 
-    `O presente é totalmente opcional!
+    `
+    O presente é totalmente opcional!
     
     Caso você escolha nos presentear, será recebido com muito carinho e alegria. 
 
@@ -242,6 +243,27 @@ function List() {
               onCancelar={cancelarReserva}
             />
           ))}
+      </div>
+
+        {/* TÍTULO */}
+      <div className="flex w-full flex-col items-center justify-center py-2">
+        <h1 className="nome-convidados text-center text-[40px] font-semibold text-[#4F6B4A]">
+          Outra forma de presentear!
+        </h1>
+      </div>
+
+      {/* AVISO PEQUENO DA PÁGINA */}
+      <div className="mx-4 mt-2 mb-6 rounded-xl bg-[#eef4e9]  px-3 py-3 text-[#4F6B4A]">
+        <div className="flex w-full  items-start gap-3">
+          {/* ÍCONE */}
+          <div className="mt-1 shrink-0 text-[22px] leading-none">
+            ⓘ 
+          </div>
+          {/* TEXTO */}
+          <p className="w-full text-center text-[13px] leading-relaxed">
+       <strong>Se nenhuma opção agradar, você pode contribuir para a compra de um item.</strong>
+          </p>
+        </div>
       </div>
 
       {/* CONTRIBUIÇÕES */}
