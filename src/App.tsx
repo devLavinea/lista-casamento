@@ -132,7 +132,7 @@ function App() {
               pararMusica();
 
               window.open(
-                "https://maps.google.com/?q=-9.389083,-40.503096",
+                "https://maps.app.goo.gl/b9hub9jB98hMG8TFA",
                 "_blank"
               );
             }}
