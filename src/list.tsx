@@ -188,15 +188,15 @@ Se preferir, você também pode se juntar a um amigo ou familiar e dividir o val
       </div>
 
       {/* AVISO PEQUENO DA PÁGINA */}
-      <div className="mx-4 mt-2 mb-6 rounded-xl bg-[#eef4e9] flex flex-col px-3 py-3 text-[#4F6B4A]">
-        <div className="flex w-full flex flex-col items-center gap-3">
+      <div className="mx-4 mt-2 mb-6 rounded-xl bg-[#eef4e9]  px-3 py-3 text-[#4F6B4A]">
+        <div className="flex w-full  items-start gap-3">
           {/* ÍCONE */}
           <div className="mt-1 shrink-0 text-[22px] leading-none">
             ⓘ 
           </div>
           {/* TEXTO */}
           <p className="w-full text-center text-[13px] leading-relaxed">
-            São apenas sugestões!<strong>O valor é apenas uma referência.</strong> <br />
+            São apenas sugestões!<br /><strong>O valor é apenas uma referência.</strong> <br />
             Clique em <strong>“Reservar”</strong> para escolher.
           </p>
         </div>
@@ -204,8 +204,8 @@ Se preferir, você também pode se juntar a um amigo ou familiar e dividir o val
 
       {/* AVISO DE ABERTURA */}
       {avisoInicial && (
-        <div className="fixed inset-0 z-[9999] flex h-full w-full items-center justify-center bg-[#eef4e9] text-[#4F6B4A]">
-          <div className="flex w-[85%] max-w-[500px] items-start gap-3">
+        <div className="fixed inset-0 z-[9999] flex h-full flex flex-col w-full items-center justify-center bg-[#eef4e9] text-[#4F6B4A]">
+          <div className="flex w-[85%] max-w-[500px] flex-col items-center gap-3">
             {/* ÍCONE */}
             <div className="mt-1 shrink-0 text-[22px] leading-none">
               ⓘ
