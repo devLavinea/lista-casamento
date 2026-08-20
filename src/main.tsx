@@ -5,6 +5,7 @@ import "./index.css";
 
 import App from "./App";
 import List from "./list";
+import Local from "./local";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -12,6 +13,7 @@ createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/lista" element={<List />} />
+        <Route path="/local" element={<Local />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
