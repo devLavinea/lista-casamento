@@ -198,7 +198,7 @@ Se preferir, você também pode se juntar a um amigo ou familiar e dividir o val
           </div>
           {/* TEXTO */}
           <p className="w-full text-center text-[13px] leading-relaxed">
-            <strong>O valor é apenas uma referência.</strong> <br />
+            São apenas sugestões!<strong>O valor é apenas uma referência.</strong> <br />
             Clique em <strong>“Reservar”</strong> para escolher.
           </p>
         </div>
