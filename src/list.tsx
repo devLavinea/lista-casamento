@@ -261,7 +261,7 @@ function List() {
           </div>
           {/* TEXTO */}
           <p className="w-full text-center text-[13px] leading-relaxed">
-       <strong>Se nenhuma opção acima agradar, você pode contribuir para a compra de um item.</strong>
+       <strong>Se nenhuma opção acima agradar, você pode contribuir com QUALQUER VALOR para a compra de um item.</strong>
           </p>
         </div>
       </div>
