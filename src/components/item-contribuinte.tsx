@@ -8,13 +8,11 @@ interface ItemProps {
   preco: string;
   descricao: string;
   valorArrecadado: number;
-  reservado: boolean;
   onContribuir: (
     id: number,
     nome: string,
     valor: number
   ) => void;
-  onCancelar: (id: number) => void;
 }
 
 function ItemContribuinte({
@@ -27,16 +25,12 @@ function ItemContribuinte({
 }: ItemProps) {
   const [divAtual, setDivAtual] = useState(2);
 
-  const [nomeDigitado, setNomeDigitado] =
-    useState("");
+  const [nomeDigitado, setNomeDigitado] = useState("");
 
-  const [valorDigitado, setValorDigitado] =
-    useState("");
+  const [valorDigitado, setValorDigitado] = useState("");
 
   const valorMeta =
-    Number(
-      String(preco).replace(",", ".")
-    ) || 0;
+    Number(String(preco).replace(",", ".")) || 0;
 
   const porcentagem =
     valorMeta > 0
@@ -101,28 +95,28 @@ function ItemContribuinte({
     <div className="flex w-full overflow-hidden rounded-xl shadow-sm">
 
       {/* IMAGEM */}
-      <div className="w-[40%] -min-h-[135px] bg-gray-100 flex items-center justify-center">
+      <div className="flex min-h-[135px] w-[40%] items-center justify-center bg-gray-100">
 
         <img
           src={imagem}
           alt={nome}
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
         />
 
       </div>
 
       {/* TELA PRINCIPAL */}
       {divAtual === 2 && (
-        <div className="flex-1 bg-white p-3 px-4 flex flex-col justify-center gap-2">
+        <div className="flex flex-1 flex-col justify-center gap-2 bg-white p-3 px-4">
 
-          <h2 className="text-[17px] font-semibold text-[#4F6B4A] text-center">
+          <h2 className="text-center text-[17px] font-semibold text-[#4F6B4A]">
             {nome}
           </h2>
 
           {/* BARRA */}
           <div className="w-full">
 
-            <div className="flex justify-between text-[10px] text-gray-500 mb-1">
+            <div className="mb-1 flex justify-between text-[10px] text-gray-500">
 
               <span>
                 R${" "}
@@ -138,10 +132,10 @@ function ItemContribuinte({
 
             </div>
 
-            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
 
               <div
-                className="h-full bg-[#4F6B4A] rounded-full transition-all duration-500"
+                className="h-full rounded-full bg-[#4F6B4A] transition-all duration-500"
                 style={{
                   width: `${porcentagem}%`,
                 }}
@@ -149,7 +143,7 @@ function ItemContribuinte({
 
             </div>
 
-            <p className="text-[14px] text-center text-gray-500 mt-1">
+            <p className="mt-1 text-center text-[14px] text-gray-500">
               Meta: R$ {preco}
             </p>
 
@@ -157,7 +151,7 @@ function ItemContribuinte({
 
           <button
             onClick={() => setDivAtual(3)}
-            className="bg-[#4F6B4A] text-white rounded-lg text-[13px] py-1.5"
+            className="rounded-lg bg-[#4F6B4A] py-1.5 text-[13px] text-white"
           >
             Contribuir
           </button>
@@ -167,9 +161,9 @@ function ItemContribuinte({
 
       {/* DIGITAR VALOR */}
       {divAtual === 3 && (
-        <div className="flex-1 bg-white p-3 flex flex-col justify-center gap-2">
+        <div className="flex flex-1 flex-col justify-center gap-2 bg-white p-3">
 
-          <h2 className="text-[13px] font-semibold text-[#4F6B4A] text-center">
+          <h2 className="text-center text-[13px] font-semibold text-[#4F6B4A]">
             Quanto você deseja contribuir?
           </h2>
 
@@ -183,21 +177,19 @@ function ItemContribuinte({
                 e.target.value
               )
             }
-            className="w-full text-[13px] px-2 py-1.5 rounded-lg border border-gray-300 focus:outline-none"
+            className="w-full rounded-lg border border-gray-300 px-2 py-1.5 text-[13px] focus:outline-none"
           />
 
           <button
-            onClick={
-              continuarContribuicao
-            }
-            className="bg-[#4F6B4A] text-white rounded-lg text-[13px] py-1.5"
+            onClick={continuarContribuicao}
+            className="rounded-lg bg-[#4F6B4A] py-1.5 text-[13px] text-white"
           >
             Continuar
           </button>
 
           <button
             onClick={() => setDivAtual(2)}
-            className="text-gray-400 text-[13px]"
+            className="text-[13px] text-gray-400"
           >
             Voltar
           </button>
@@ -207,17 +199,17 @@ function ItemContribuinte({
 
       {/* PIX */}
       {divAtual === 4 && (
-        <div className="flex-1 bg-white p-3 flex flex-col justify-center gap-2">
+        <div className="flex flex-1 flex-col justify-center gap-2 bg-white p-3">
 
-          <h2 className="text-[13px] font-semibold text-[#4F6B4A] text-center">
+          <h2 className="text-center text-[13px] font-semibold text-[#4F6B4A]">
             Faça sua contribuição via Pix
           </h2>
 
-          <p className="text-[12px] text-center text-gray-500">
+          <p className="text-center text-[12px] text-gray-500">
             Valor da contribuição:
           </p>
 
-          <p className="text-lg font-semibold text-[#4F6B4A] text-center">
+          <p className="text-center text-lg font-semibold text-[#4F6B4A]">
             R${" "}
             {Number(
               valorDigitado.replace(",", ".")
@@ -226,17 +218,17 @@ function ItemContribuinte({
               .replace(".", ",")}
           </p>
 
-          <div className="bg-[#eef4e9] rounded-lg p-2 text-center">
+          <div className="rounded-lg bg-[#eef4e9] p-2 text-center">
 
             <p className="text-[13px] text-gray-500">
               Chave Pix
             </p>
 
-            <p className="text-[14px] font-semibold text-[#4F6B4A] break-all">
+            <p className="break-all text-[14px] font-semibold text-[#4F6B4A]">
               74988248014
             </p>
 
-            <p className="text-[13px] text-gray-500 mt-1">
+            <p className="mt-1 text-[13px] text-gray-500">
               Lavinea Souza
             </p>
 
@@ -246,20 +238,20 @@ function ItemContribuinte({
 
           </div>
 
-          <p className="text-[11px] text-center text-gray-400">
+          <p className="text-center text-[11px] text-gray-400">
             Após realizar o Pix, confirme sua contribuição.
           </p>
 
           <button
             onClick={() => setDivAtual(5)}
-            className="bg-[#4F6B4A] text-white rounded-lg text-[13px] py-1.5"
+            className="rounded-lg bg-[#4F6B4A] py-1.5 text-[13px] text-white"
           >
             Já fiz o Pix
           </button>
 
           <button
             onClick={() => setDivAtual(3)}
-            className="text-gray-400 text-[13px]"
+            className="text-[13px] text-gray-400"
           >
             Voltar
           </button>
@@ -269,13 +261,13 @@ function ItemContribuinte({
 
       {/* NOME */}
       {divAtual === 5 && (
-        <div className="flex-1 bg-white p-3 flex flex-col justify-center gap-2">
+        <div className="flex flex-1 flex-col justify-center gap-2 bg-white p-3">
 
-          <h2 className="text-[13px] font-semibold text-[#4F6B4A] text-center">
+          <h2 className="text-center text-[13px] font-semibold text-[#4F6B4A]">
             Identificar contribuição
           </h2>
 
-          <p className="text-[11px] text-center text-gray-500">
+          <p className="text-center text-[11px] text-gray-500">
             Digite seu nome para registrar sua contribuição.
           </p>
 
@@ -288,21 +280,19 @@ function ItemContribuinte({
                 e.target.value
               )
             }
-            className="w-full text-[13px] px-2 py-1.5 rounded-lg border border-gray-300 focus:outline-none"
+            className="w-full rounded-lg border border-gray-300 px-2 py-1.5 text-[13px] focus:outline-none"
           />
 
           <button
-            onClick={
-              confirmarContribuicao
-            }
-            className="bg-[#4F6B4A] text-white rounded-lg text-[13px] py-1.5"
+            onClick={confirmarContribuicao}
+            className="rounded-lg bg-[#4F6B4A] py-1.5 text-[13px] text-white"
           >
             Confirmar contribuição
           </button>
 
           <button
             onClick={() => setDivAtual(4)}
-            className="text-gray-400 text-[13px]"
+            className="text-[13px] text-gray-400"
           >
             Voltar
           </button>
