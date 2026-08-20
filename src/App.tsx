@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import noivos from "/noivos.png";
 import fundoEsquerdo from "/fundo_esquerdo.png";
 import fundoDireito from "/fundo_direito.png";
-import convite from "/convite.png";
+import convite from "/convite2.png";
 import lacre from "/lacre.png";
 import ornamento2 from "/ornamento2.png";
 import ornamento3 from "/ornamento3.png";
