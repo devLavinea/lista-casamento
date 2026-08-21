@@ -4,7 +4,9 @@ export default function Local() {
   const googleMapsUrl = `https://maps.app.goo.gl/b9hub9jB98hMG8TFA`;
 
   return (
-    <section className="w-full bg-white px-5 py-12">
+    <section className="w-full bg-white px-5 py-12" style={{
+            backgroundImage: `url(${convite})`,
+          }}>
       <div className="mx-auto w-full max-w-2xl text-center">
 
         {/* Título */}
