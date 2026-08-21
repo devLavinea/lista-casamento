@@ -47,9 +47,7 @@ export default function Local() {
           <p className="mt-3 text-[18px] leading-relaxed text-gray-600">
             BA 210, N°12, Bairro Pedro Raimundo
             <br />
-            Juazeiro-BA
-            <br />
-            Próximo ao "Construção Jangadeiro"
+            Juazeiro-BA, próximo ao "Jangadeiro Construção"
           </p>
         </div>
 
