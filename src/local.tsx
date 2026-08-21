@@ -1,15 +1,15 @@
 import convite from "/convite2.png";
 
 export default function Local() {
-  // Coordenadas do local
-  const latitude = -9.451576;
-  const longitude = -40.513880;
+  // Coordenadas exatas do local do casamento
+  const latitude = -9.451802;
+  const longitude = -40.510527;
 
-  // Link correto para abrir no Google Maps
+  // Link correto do Google Maps
   const googleMapsUrl =
-    "https://maps.app.goo.gl/b9hub9jB98hMG8TFA";
+    "https://maps.app.goo.gl/pPGYdpghKTXPuh6LA?g_st=ac";
 
-  // Mapa incorporado
+  // Mapa incorporado usando as coordenadas exatas
   const mapEmbedUrl =
     `https://www.google.com/maps?q=${latitude},${longitude}&z=17&output=embed`;
 
@@ -69,9 +69,16 @@ export default function Local() {
           />
         </div>
 
-        {/* Botão do Google Maps */}
+        {/* Botão */}
         <button
-          onClick={() => window.open(googleMapsUrl, "_blank")}
+          type="button"
+          onClick={() => {
+            window.open(
+              googleMapsUrl,
+              "_blank",
+              "noopener,noreferrer"
+            );
+          }}
           className="mt-5 h-12 w-64 rounded-md bg-[#4a5c36] text-[17px] text-white shadow-md transition hover:bg-[#3a4a2b]"
         >
           Abrir no Google Maps
