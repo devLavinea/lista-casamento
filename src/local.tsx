@@ -1,4 +1,5 @@
 import convite from "/convite2.png";
+import ornamento2 from "/ornamento2.png";
 
 export default function Local() {
   // Coordenadas exatas do local do casamento
@@ -30,7 +31,11 @@ export default function Local() {
         <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#4a5c36]">
           Nosso jantar de casamento
         </p>
-
+  <img
+            src={ornamento2}
+            className="h-5.5"
+            alt=""
+          />
         <h2
           className="text-5xl text-[#4a5c36]"
           style={{ fontFamily: "Birthstone, cursive" }}
