@@ -1,15 +1,27 @@
 import convite from "/convite2.png";
 
 export default function Local() {
-  
+  const latitude = -9.389083;
+  const longitude = -40.503096;
 
-  const googleMapsUrl = `https://maps.app.goo.gl/b9hub9jB98hMG8TFA`;
+  const googleMapsUrl =
+    "https://maps.app.goo.gl/b9hub9jB98hMG8TFA";
+
+  const mapEmbedUrl =
+    `https://www.google.com/maps?q=${latitude},${longitude}&z=17&output=embed`;
 
   return (
-    <section className="" style={{
-            backgroundImage: `url(${convite})`,
-          }}>
-      <div className="mx-auto w-full max-w-2xl text-center">
+    <section
+      className="min-h-screen w-full"
+      style={{
+        backgroundImage: `url(${convite})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "scroll",
+      }}
+    >
+      <div className="mx-auto flex min-h-screen w-full max-w-2xl flex-col items-center px-4 py-8 text-center">
 
         {/* Título */}
         <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#4a5c36]">
@@ -17,7 +29,7 @@ export default function Local() {
         </p>
 
         <h2
-          className="text-4xl text-[#4a5c36]"
+          className="text-5xl text-[#4a5c36]"
           style={{ fontFamily: "Birthstone, cursive" }}
         >
           Local
@@ -25,31 +37,28 @@ export default function Local() {
 
         {/* Nome do espaço */}
         <div className="mt-8">
-          <h3 className="text-xl font-medium text-[#333]">
+          <h3 className="text-3xl font-medium text-[#333]">
             Espaço Bela Vista
           </h3>
 
-          <p className="mt-2 text-[15px] leading-relaxed text-gray-600">
-            Ba 210, N°12, Bairro Pedro Raimundo 
-
-
+          <p className="mt-3 text-[18px] leading-relaxed text-gray-600">
+            BA 210, N°12, Bairro Pedro Raimundo
             <br />
             Juazeiro-BA
             <br />
-            Próximo  ao "Construção Jangadeiro"
+            Próximo ao "Construção Jangadeiro"
           </p>
         </div>
 
         {/* Mapa */}
-        <div className="mt-7 overflow-hidden rounded-2xl shadow-md">
+        <div className="mt-7 w-full overflow-hidden rounded-2xl shadow-md">
           <iframe
             title="Local do casamento"
-            src={`https://maps.app.goo.gl/b9hub9jB98hMG8TFA`}
-            width="100%"
+            src={mapEmbedUrl}
+            className="block w-full"
             height="300"
             style={{
               border: 0,
-              display: "block",
             }}
             loading="lazy"
             allowFullScreen
@@ -60,7 +69,7 @@ export default function Local() {
         {/* Botão */}
         <button
           onClick={() => window.open(googleMapsUrl, "_blank")}
-          className="mt-5 h-11 w-52 rounded-md bg-[#4a5c36] text-[16px] text-white shadow-md transition hover:bg-[#3a4a2b]"
+          className="mt-5 h-12 w-64 rounded-md bg-[#4a5c36] text-[17px] text-white shadow-md transition hover:bg-[#3a4a2b]"
         >
           Abrir no Google Maps
         </button>
