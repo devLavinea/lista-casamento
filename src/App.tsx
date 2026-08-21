@@ -125,46 +125,46 @@ function App() {
           />
 
           {/* BOTÃO LOCAL DO EVENTO */}
-          <Link to="/local">
-          <button
-            type="button"
-            onClick={() => {
-              // PARA A MÚSICA ANTES DE ABRIR O MAPA
-              pararMusica();
-
-              window.open(
-                "https://maps.app.goo.gl/b9hub9jB98hMG8TFA",
-                "_blank"
-              );
-            }}
-            className="shadow-button mt-2 text-[18px] w-50 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-4"
+          <Link
+            to="/local"
+            onClick={pararMusica}
           >
-            <svg
-              className="size-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
+            <button
+              type="button"
+              onClick={() => {
+                pararMusica();
+
+                window.open(
+                  "https://maps.app.goo.gl/b9hub9jB98hMG8TFA",
+                  "_blank"
+                );
+              }}
+              className="shadow-button mt-2 text-[18px] w-50 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-4"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-              />
+              <svg
+                className="size-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
 
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-              />
-            </svg>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                />
+              </svg>
 
-            Local do evento
-          </button>
+              Local do evento
+            </button>
           </Link>
-        </div>
-      </section>
-        
+
           {/* BOTÃO LISTA DE PRESENTES */}
           <Link
             to="/lista"
