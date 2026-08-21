@@ -1,8 +1,7 @@
 import React from "react";
 
 export default function Local() {
-  const latitude = -9.389083;
-  const longitude = -40.503096;
+  
 
   const googleMapsUrl = `https://maps.app.goo.gl/b9hub9jB98hMG8TFA`;
 
@@ -30,7 +29,6 @@ export default function Local() {
 
           <p className="mt-2 text-[15px] leading-relaxed text-gray-600">
             Ba 210, N°12, Bairro Pedro Raimundo 
-
 
 
             <br />
