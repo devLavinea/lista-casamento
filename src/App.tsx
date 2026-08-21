@@ -134,10 +134,7 @@ function App() {
               onClick={() => {
                 pararMusica();
 
-                window.open(
-                  "https://maps.app.goo.gl/b9hub9jB98hMG8TFA",
-                  "_blank"
-                );
+                
               }}
               className="shadow-button mt-2 text-[18px] w-50 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-4"
             >
