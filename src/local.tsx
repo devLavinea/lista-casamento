@@ -62,7 +62,7 @@ export default function Local() {
             title="Local do casamento"
             src={mapEmbedUrl}
             className="block w-full"
-            height="300"
+            height="280"
             style={{
               border: 0,
             }}
