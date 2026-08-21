@@ -1,12 +1,15 @@
 import convite from "/convite2.png";
 
 export default function Local() {
-  const latitude = -9.389083;
-  const longitude = -40.503096;
+  // Coordenadas do local
+  const latitude = -9.451576;
+  const longitude = -40.513880;
 
+  // Link correto para abrir no Google Maps
   const googleMapsUrl =
     "https://maps.app.goo.gl/b9hub9jB98hMG8TFA";
 
+  // Mapa incorporado
   const mapEmbedUrl =
     `https://www.google.com/maps?q=${latitude},${longitude}&z=17&output=embed`;
 
@@ -66,7 +69,7 @@ export default function Local() {
           />
         </div>
 
-        {/* Botão */}
+        {/* Botão do Google Maps */}
         <button
           onClick={() => window.open(googleMapsUrl, "_blank")}
           className="mt-5 h-12 w-64 rounded-md bg-[#4a5c36] text-[17px] text-white shadow-md transition hover:bg-[#3a4a2b]"
