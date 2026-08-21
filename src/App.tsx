@@ -125,6 +125,7 @@ function App() {
           />
 
           {/* BOTÃO LOCAL DO EVENTO */}
+          <Link to="/local">
           <button
             type="button"
             onClick={() => {
@@ -160,7 +161,9 @@ function App() {
 
             Local do evento
           </button>
-
+        </div>
+      </section>
+        </Link>
           {/* BOTÃO LISTA DE PRESENTES */}
           <Link
             to="/lista"
