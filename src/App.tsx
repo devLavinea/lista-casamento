@@ -161,9 +161,10 @@ function App() {
 
             Local do evento
           </button>
+          </Link>
         </div>
       </section>
-        </Link>
+        
           {/* BOTÃO LISTA DE PRESENTES */}
           <Link
             to="/lista"
