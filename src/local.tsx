@@ -1,3 +1,5 @@
+import convite from "/convite2.png";
+
 export default function Local() {
   
 
