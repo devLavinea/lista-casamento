@@ -22,7 +22,7 @@ function List() {
   const [avisoInicial, setAvisoInicial] = useState(true);
   const [textoDigitado, setTextoDigitado] = useState("");
 
-  const textoAviso = 
+  const textoAviso =
     `
     O presente é totalmente opcional!
     
@@ -31,6 +31,12 @@ function List() {
     Se preferir, você também pode se juntar a um amigo ou familiar e dividir o valor do presente.
     
     Desde já, agradecemos imensamente pelo carinho. 💚`;
+
+  // PULAR AVISO
+  const pularAviso = () => {
+    setAvisoInicial(false);
+    setTextoDigitado("");
+  };
 
   // BUSCAR PRESENTES
   async function buscarPresentes() {
@@ -194,15 +200,17 @@ function List() {
       </div>
 
       {/* AVISO PEQUENO DA PÁGINA */}
-      <div className="mx-4 mt-2 mb-6 rounded-xl bg-[#eef4e9]  px-3 py-3 text-[#4F6B4A]">
-        <div className="flex w-full  items-start gap-3">
+      <div className="mx-4 mt-2 mb-6 rounded-xl bg-[#eef4e9] px-3 py-3 text-[#4F6B4A]">
+        <div className="flex w-full items-start gap-3">
           {/* ÍCONE */}
           <div className="mt-1 shrink-0 text-[22px] leading-none">
             ⓘ 
           </div>
+
           {/* TEXTO */}
           <p className="w-full text-center text-[13px] leading-relaxed">
-            São apenas sugestões!<br /><strong>O valor é apenas uma referência.</strong> <br />
+            São apenas sugestões!<br />
+            <strong>O valor é apenas uma referência.</strong> <br />
             Clique em <strong>“Reservar”</strong> para escolher.
           </p>
         </div>
@@ -210,8 +218,18 @@ function List() {
 
       {/* AVISO DE ABERTURA */}
       {avisoInicial && (
-        <div className="fixed inset-0 z-[9999] flex h-full flex flex-col w-full items-center justify-center bg-[#eef4e9] text-[#4F6B4A]">
+        <div className="fixed inset-0 z-[9999] flex h-full w-full flex-col items-center justify-center bg-[#eef4e9] text-[#4F6B4A]">
+
+          {/* BOTÃO PULAR */}
+          <button
+            onClick={pularAviso}
+            className="absolute right-5 top-5 rounded-full border border-[#4F6B4A] px-4 py-1.5 text-[13px] font-medium text-[#4F6B4A] transition active:scale-95"
+          >
+            Pular
+          </button>
+
           <div className="flex w-[85%] max-w-[500px] flex-col items-center gap-3">
+
             {/* ÍCONE */}
             <div className="mt-1 shrink-0 text-[22px] leading-none">
               ⓘ
@@ -222,6 +240,7 @@ function List() {
               {textoDigitado}
               <span className="animate-pulse">|</span>
             </p>
+
           </div>
         </div>
       )}
@@ -246,7 +265,7 @@ function List() {
           ))}
       </div>
 
-        {/* TÍTULO */}
+      {/* TÍTULO */}
       <div className="flex w-full flex-col items-center justify-center py-2">
         <h1 className="nome-convidados text-center text-[40px] font-semibold text-[#4F6B4A]">
           Outra forma de presentear:
@@ -254,15 +273,19 @@ function List() {
       </div>
 
       {/* AVISO PEQUENO DA PÁGINA */}
-      <div className="mx-4 mt-2 mb-6 rounded-xl bg-[#eef4e9]  px-3 py-3 text-[#4F6B4A]">
-        <div className="flex w-full  items-start gap-3">
+      <div className="mx-4 mt-2 mb-6 rounded-xl bg-[#eef4e9] px-3 py-3 text-[#4F6B4A]">
+        <div className="flex w-full items-start gap-3">
           {/* ÍCONE */}
           <div className="mt-1 shrink-0 text-[22px] leading-none">
             ⓘ 
           </div>
+
           {/* TEXTO */}
           <p className="w-full text-center text-[13px] leading-relaxed">
-       <strong>Se nenhuma opção acima agradar, você pode contribuir com QUALQUER VALOR para a compra de um item.</strong>
+            <strong>
+              Se nenhuma opção acima agradar, você pode contribuir com QUALQUER
+              VALOR para a compra de um item.
+            </strong>
           </p>
         </div>
       </div>
