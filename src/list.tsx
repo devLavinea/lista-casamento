@@ -4,6 +4,7 @@ import ItemContribuinte from "./components/item-contribuinte";
 import { supabase } from "./services/supabase";
 import "./index.css";
 
+
 interface Presente {
   id: number;
   nome: string;
