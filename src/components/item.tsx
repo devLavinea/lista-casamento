@@ -124,11 +124,17 @@ function Item({
           </h2>
 
           {/* PARA QUEM NÃO RESERVOU */}
-          {!minhaReserva && (
-            <p className="text-[13px] text-center text-gray-500">
-              Presente reservado 🎁
-            </p>
-          )}
+{!minhaReserva && (
+  <>
+    <p className="text-[11px] text-center text-gray-400 leading-tight opacity-70">
+      {descricao}
+    </p>
+
+    <p className="text-[13px] text-center text-gray-500">
+      Presente reservado 🎁
+    </p>
+  </>
+)}
 
           {/* APENAS PARA QUEM RESERVOU */}
           {minhaReserva && (
