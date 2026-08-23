@@ -42,6 +42,16 @@ function App() {
     }
   };
 
+  // Pula o vídeo
+  const pularVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+
+    setMostrarConvite(true);
+  };
+
   // Para a música completamente
   const pararMusica = () => {
     if (audioRef.current) {
@@ -79,6 +89,17 @@ function App() {
             mostrarConvite ? "hidden" : ""
           }`}
         />
+
+        {/* BOTÃO PULAR VÍDEO */}
+        {!mostrarConvite && abrindo && (
+          <button
+            type="button"
+            onClick={pularVideo}
+            className="absolute right-5 top-5 z-[50] rounded-full border border-white bg-black/30 px-4 py-1.5 text-[13px] font-medium text-white backdrop-blur-sm transition active:scale-95"
+          >
+            Pular
+          </button>
+        )}
 
         {/* CONVITE */}
         <div
@@ -133,8 +154,6 @@ function App() {
               type="button"
               onClick={() => {
                 pararMusica();
-
-                
               }}
               className="shadow-button mt-2 text-[18px] w-50 h-10 bg-[#4a5c36] text-white rounded-md hover:bg-[#3a4c26] flex items-center justify-center gap-4"
             >
