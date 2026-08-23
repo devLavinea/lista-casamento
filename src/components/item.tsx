@@ -13,7 +13,6 @@ interface ItemProps {
   onCancelar: (id: number) => void;
 }
 
-
 function Item({
   id,
   nome,
@@ -41,10 +40,9 @@ function Item({
   }
 
   return (
-    <div className="w-full -min-h-[135px] bg-white rounded-xl shadow-md overflow-hidden flex">
-
+    <div className="w-full min-h-[135px] bg-white rounded-xl shadow-md overflow-hidden flex">
       {/* IMAGEM */}
-      <div className="w-[40%] -min-h-[135px] bg-gray-100 flex items-center justify-center">
+      <div className="w-[40%] min-h-[135px] bg-gray-100 flex items-center justify-center">
         <img
           src={imagem}
           alt={nome}
@@ -62,10 +60,10 @@ function Item({
           <h2 className="text-[17px] font-semibold text-[#4F6B4A] text-center">
             {nome}
           </h2>
-           <p className="text-[13px] text-center text-gray-500">
+
+          <p className="text-[13px] text-center text-gray-500">
             {descricao}
           </p>
-
 
           {/* PREÇO */}
           <div className="flex justify-center">
@@ -118,15 +116,9 @@ function Item({
       {/* PRESENTE RESERVADO */}
       {reservado && (
         <div className="flex-1 bg-white p-3 flex flex-col justify-center gap-1">
-
-          <h2 className=" text-[17px] font-semibold text-[#4F6B4A] text-center">
+          <h2 className="text-[17px] font-semibold text-[#4F6B4A] text-center">
             {nome}
           </h2>
-
-           <p className="text-[12px] text-center text-gray-400 leading-tight opacity-70">
-                Você pode comprar este presente onde preferir.
-              </p>
-
 
           {/* PREÇO */}
           <div className="flex justify-center">
@@ -141,20 +133,23 @@ function Item({
               : "Presente reservado 🎁"}
           </p>
 
+          {/* APENAS PARA QUEM RESERVOU */}
           {minhaReserva && (
             <>
+              <p className="text-[12px] text-center text-gray-400 leading-tight opacity-70">
+                Você pode comprar este presente onde preferir.
+              </p>
+
               <p className="text-[11px] text-center text-gray-400 leading-tight opacity-70">
                 {descricao}
               </p>
 
-          <button
-  onClick={() => window.open(link, "_blank")}
-  className="flex items-center justify-center gap-1 border border-[#4F6B4A] text-[#4F6B4A] text-[13px] py-1 rounded-lg"
->
-  🛒 Comprar
-</button>
-
-              
+              <button
+                onClick={() => window.open(link, "_blank")}
+                className="flex items-center justify-center gap-1 border border-[#4F6B4A] text-[#4F6B4A] text-[13px] py-1 rounded-lg"
+              >
+                🛒 Comprar
+              </button>
 
               <button
                 onClick={() => onCancelar(id)}
