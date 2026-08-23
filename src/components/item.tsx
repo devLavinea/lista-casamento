@@ -41,6 +41,7 @@ function Item({
 
   return (
     <div className="w-full min-h-[135px] bg-white rounded-xl shadow-md overflow-hidden flex">
+
       {/* IMAGEM */}
       <div className="w-[40%] min-h-[135px] bg-gray-100 flex items-center justify-center">
         <img
@@ -50,7 +51,7 @@ function Item({
         />
       </div>
 
-      {/* PRIMEIRA TELA */}
+      {/* PRIMEIRA TELA - PRESENTE DISPONÍVEL */}
       {!reservado && (
         <div
           className={`${
@@ -116,26 +117,33 @@ function Item({
       {/* PRESENTE RESERVADO */}
       {reservado && (
         <div className="flex-1 bg-white p-3 flex flex-col justify-center gap-1">
+
+          {/* NOME DO PRESENTE */}
           <h2 className="text-[17px] font-semibold text-[#4F6B4A] text-center">
             {nome}
           </h2>
 
-          {/* PREÇO */}
-          <div className="flex justify-center">
-            <span className="bg-[#eef4e9] text-[#4F6B4A] font-semibold text-[13px] px-3 py-1 rounded-lg">
-              R$ {preco}
-            </span>
-          </div>
-
-          <p className="text-[13px] text-center text-gray-500">
-            {minhaReserva
-              ? `Reservado por ${minhaReserva}`
-              : "Presente reservado 🎁"}
-          </p>
+          {/* PARA QUEM NÃO RESERVOU */}
+          {!minhaReserva && (
+            <p className="text-[13px] text-center text-gray-500">
+              Presente reservado 🎁
+            </p>
+          )}
 
           {/* APENAS PARA QUEM RESERVOU */}
           {minhaReserva && (
             <>
+              {/* PREÇO */}
+              <div className="flex justify-center">
+                <span className="bg-[#eef4e9] text-[#4F6B4A] font-semibold text-[13px] px-3 py-1 rounded-lg">
+                  R$ {preco}
+                </span>
+              </div>
+
+              <p className="text-[13px] text-center text-gray-500">
+                Reservado por {minhaReserva}
+              </p>
+
               <p className="text-[12px] text-center text-gray-400 leading-tight opacity-70">
                 Você pode comprar este presente onde preferir.
               </p>
