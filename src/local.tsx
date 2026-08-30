@@ -61,7 +61,7 @@ export default function Local() {
           <img
             src="/fachada.jpg"
             alt="Fachada do local do casamento"
-            className="block h-auto w-full object-cover"
+            className="block h-48 w-full object-cover"
           />
         </div>
 
