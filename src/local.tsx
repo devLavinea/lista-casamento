@@ -2,17 +2,17 @@ import convite from "/convite2.png";
 import ornamento2 from "/ornamento2.png";
 
 export default function Local() {
-  // Coordenadas exatas do local do casamento
-  const latitude = -9.451802;
-  const longitude = -40.510527;
+  // Endereço do local do casamento
+  const endereco =
+    "Avenida Propriá, 03A, Monte Castelo, Juazeiro-BA";
 
   // Link correto do Google Maps
   const googleMapsUrl =
-    "https://maps.app.goo.gl/pPGYdpghKTXPuh6LA?g_st=ac";
+    "https://maps.app.goo.gl/BV8xAoGa94yyF3Lp7?g_st=ac";
 
-  // Mapa incorporado usando as coordenadas exatas
+  // Mapa baseado no novo endereço
   const mapEmbedUrl =
-    `https://www.google.com/maps?q=${latitude},${longitude}&z=17&output=embed`;
+    "https://www.google.com/maps?q=Avenida+Propriá,+03A,+Monte+Castelo,+Juazeiro-BA&z=17&output=embed";
 
   return (
     <section
@@ -31,11 +31,13 @@ export default function Local() {
         <p className="mb-1.5 mt-4 text-sm uppercase tracking-[0.25em] text-[#4a5c36]">
           Nosso jantar de casamento
         </p>
-  <img
-            src={ornamento2}
-            className="h-5.5"
-            alt=""
-          />
+
+        <img
+          src={ornamento2}
+          className="h-5.5"
+          alt=""
+        />
+
         <h2
           className="text-5xl text-[#4a5c36]"
           style={{ fontFamily: "Birthstone, cursive" }}
@@ -50,11 +52,25 @@ export default function Local() {
           </h3>
 
           <p className="mt-3 text-[17px] leading-relaxed text-gray-600">
-            BA 210, N°12, Bairro Pedro Raimundo,
+            Avenida Propriá, 03A,
             <br />
-            Juazeiro-BA, próximo ao "Jangadeiro Construção"
+            Monte Castelo, Juazeiro-BA
           </p>
         </div>
+
+        {/* Foto da fachada */}
+        <div className="mt-7 w-full overflow-hidden rounded-2xl shadow-md">
+          <img
+            src="/fachada.jpg"
+            alt="Fachada do local do casamento"
+            className="block h-auto w-full object-cover"
+          />
+        </div>
+
+        <p className="mt-3 px-4 text-sm leading-relaxed text-gray-500">
+          Para facilitar a identificação do local, confira a foto da fachada
+          acima.
+        </p>
 
         {/* Mapa */}
         <div className="mt-7 w-full overflow-hidden rounded-2xl shadow-md">
