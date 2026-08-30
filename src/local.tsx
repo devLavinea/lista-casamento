@@ -23,7 +23,7 @@ export default function Local() {
         backgroundAttachment: "scroll",
       }}
     >
-      <div className="mx-auto flex min-h-screen w-full max-w-2xl flex-col items-center px-4 pb-8 pt-5 text-center">
+      <div className="mx-auto flex min-h-screen w-full max-w-2xl flex-col items-center px-4 pb-8 pt-3.5 text-center">
 
         {/* Título */}
         <p className="mb-1.5 mt-4 text-sm uppercase tracking-[0.25em] text-[#4a5c36]">
