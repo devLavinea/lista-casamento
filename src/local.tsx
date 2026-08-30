@@ -48,7 +48,7 @@ export default function Local() {
         {/* Nome do espaço */}
         <div className="mt-8">
           <h3 className="text-3xl font-medium text-[#333]">
-            Espaço Bela Vista
+            Espaço Castelo Festa
           </h3>
 
           <p className="mt-3 text-[17px] leading-relaxed text-gray-600">
