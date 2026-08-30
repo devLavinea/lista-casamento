@@ -2,9 +2,7 @@ import convite from "/convite2.png";
 import ornamento2 from "/ornamento2.png";
 
 export default function Local() {
-  // Endereço do local do casamento
-  const endereco =
-    "Avenida Propriá, 03A, Monte Castelo, Juazeiro-BA";
+
 
   // Link correto do Google Maps
   const googleMapsUrl =
