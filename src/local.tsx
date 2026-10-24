@@ -1,16 +1,18 @@
+
 import convite from "/convite2.png";
 import ornamento2 from "/ornamento2.png";
 
 export default function Local() {
-
-
-  // Link correto do Google Maps
+  // Link para abrir o local no Google Maps
   const googleMapsUrl =
     "https://maps.app.goo.gl/LHdqRjgadCLmeiWQA";
 
-  // Mapa baseado no novo endereço
+  // Mapa incorporado usando o endereço do espaço
+  const endereco =
+    "Espaço Castelo Festa, Avenida Propriá, 03A, Monte Castelo, Juazeiro, Bahia, Brasil";
+
   const mapEmbedUrl =
- "https://maps.app.goo.gl/LHdqRjgadCLmeiWQA";
+    `https://maps.google.com/maps?q=${encodeURIComponent(endereco)}&output=embed`;
 
   return (
     <section
@@ -25,7 +27,6 @@ export default function Local() {
     >
       <div className="mx-auto flex min-h-screen w-full max-w-2xl flex-col items-center px-4 pb-8 pt-3.5 text-center">
 
-        {/* Título */}
         <p className="mb-1.5 mt-4 text-sm uppercase tracking-[0.25em] text-[#4a5c36]">
           Nosso jantar de casamento
         </p>
@@ -43,7 +44,6 @@ export default function Local() {
           Local
         </h2>
 
-        {/* Nome do espaço */}
         <div className="mt-8">
           <h3 className="text-3xl font-medium text-[#333]">
             Espaço Castelo Festa
@@ -66,27 +66,25 @@ export default function Local() {
         </div>
 
         <p className="mt-3 px-4 text-sm leading-relaxed text-gray-500">
-          Para facilitar a identificação do local, confira a foto da fachada
-          acima.
+          Para facilitar a identificação do local,
+          confira a foto da fachada acima.
         </p>
 
-        {/* Mapa */}
+        {/* Mapa corrigido */}
         <div className="mt-7 w-full overflow-hidden rounded-2xl shadow-md">
           <iframe
             title="Local do casamento"
             src={mapEmbedUrl}
             className="block w-full"
             height="280"
-            style={{
-              border: 0,
-            }}
+            style={{ border: 0 }}
             loading="lazy"
             allowFullScreen
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
 
-        {/* Botão */}
+        {/* Botão para abrir o local */}
         <button
           type="button"
           onClick={() => {
