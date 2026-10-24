@@ -6,11 +6,11 @@ export default function Local() {
 
   // Link correto do Google Maps
   const googleMapsUrl =
-    "https://maps.app.goo.gl/BV8xAoGa94yyF3Lp7?g_st=ac";
+    "https://maps.app.goo.gl/LHdqRjgadCLmeiWQA";
 
   // Mapa baseado no novo endereço
   const mapEmbedUrl =
-    "https://www.google.com/maps?q=Avenida+Propriá,+03A,+Monte+Castelo,+Juazeiro-BA&z=17&output=embed";
+ "https://maps.app.goo.gl/LHdqRjgadCLmeiWQA";
 
   return (
     <section
